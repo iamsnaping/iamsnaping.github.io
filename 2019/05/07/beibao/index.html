@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="nice 过了！！！优化过了！！！">
+<meta name="description" content="title:背包问题；author：tc；ohohoh！这是tc的第一篇博客呢。nice这回是背包，自己感觉总是忘记然后就哎，说多了都是泪。ok。 背包问题最主要的是状态转移方程。讲道理就最主要的是选和不选的问题。然后我个人觉得它就是优化版的贪心问题，其实他的状态转移方程就基本是贪心的思想。 0/1 背包。这个是题大概就是每个物品只有一件，然后每个物品有他的价值和占用空间，然后就求最多价值可以试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="this is a tittle">
-<meta property="og:url" content="http://yoursite.com/2019/05/07/niceone/index.html">
+<meta property="og:title" content="一个不愿透露姓名的网友的博客">
+<meta property="og:url" content="http://yoursite.com/2019/05/07/beibao/index.html">
 <meta property="og:site_name" content="一个不愿透露姓名的网友的博客">
-<meta property="og:description" content="nice 过了！！！优化过了！！！">
+<meta property="og:description" content="title:背包问题；author：tc；ohohoh！这是tc的第一篇博客呢。nice这回是背包，自己感觉总是忘记然后就哎，说多了都是泪。ok。 背包问题最主要的是状态转移方程。讲道理就最主要的是选和不选的问题。然后我个人觉得它就是优化版的贪心问题，其实他的状态转移方程就基本是贪心的思想。 0/1 背包。这个是题大概就是每个物品只有一件，然后每个物品有他的价值和占用空间，然后就求最多价值可以试">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-07T12:03:23.027Z">
+<meta property="og:updated_time" content="2019-05-22T02:21:30.491Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="this is a tittle">
-<meta name="twitter:description" content="nice 过了！！！优化过了！！！">
+<meta name="twitter:title" content="一个不愿透露姓名的网友的博客">
+<meta name="twitter:description" content="title:背包问题；author：tc；ohohoh！这是tc的第一篇博客呢。nice这回是背包，自己感觉总是忘记然后就哎，说多了都是泪。ok。 背包问题最主要的是状态转移方程。讲道理就最主要的是选和不选的问题。然后我个人觉得它就是优化版的贪心问题，其实他的状态转移方程就基本是贪心的思想。 0/1 背包。这个是题大概就是每个物品只有一件，然后每个物品有他的价值和占用空间，然后就求最多价值可以试">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/07/niceone/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/07/beibao/">
 
 
 
 
 
-  <title>this is a tittle | 一个不愿透露姓名的网友的博客</title>
+  <title> | 一个不愿透露姓名的网友的博客</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/niceone/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/beibao/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="无敌 .2.0">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">this is a tittle</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -261,7 +261,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-07T20:03:23+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-07T19:29:51+08:00">
                 2019-05-07
               </time>
             
@@ -299,7 +299,13 @@
       
 
       
-        <p>nice 过了！！！<br>优化过了！！！</p>
+        <hr>
+<h2 id="title-背包问题；author：tc；"><a href="#title-背包问题；author：tc；" class="headerlink" title="title:背包问题；author：tc；"></a>title:背包问题；author：tc；</h2><p>ohohoh！这是tc的第一篇博客呢。nice<br>这回是背包，自己感觉总是忘记然后就哎，说多了都是泪。ok。<br> 背包问题最主要的是状态转移方程。讲道理就最主要的是选和不选的问题。然后我个人觉得它就是优化版的贪心问题，其实他的状态转移方程就基本是贪心的思想。</p>
+<h1 id="0-1-背包。"><a href="#0-1-背包。" class="headerlink" title="0/1 背包。"></a>0/1 背包。</h1><p>这个是题大概就是每个物品只有一件，然后每个物品有他的价值和占用空间，然后就求最多价值可以试多少。<br>题目：<a href="http://oj.noi.cn/oj/#main/show/1159" target="_blank" rel="noopener">0/1背包</a><br>这是他的状态转移方程<br>f[n] = max(f[n - w[i]] + v[i] , f[n])<br>这就是他的状态转移方程。<br>因为他的每个物品只能用一次，所以为了避免重复使用所以我们从后开始遍历。以下是代码   </p>
+<p>‘’’</p>
+<p>#include<iostream><br>using namespace std;</iostream></p>
+<p>int v[100000],w[100000],f[100000];</p>
+<p>int main(){<br>    int n,t;<br>    cin&gt;&gt;n&gt;&gt;t;<br>    int i = 0;<br>    for(i;i &lt; t;i++) cin&gt;&gt;w[i] &gt;&gt; v[i];<br>    i = 0;<br>    int j = 0;<br>    for(;i &lt; t;i++)<br>        for(j = n;j &gt;= w[i];j–)<br>            f[j] = max(f[j],f[j - w[i]] + v[i]);<br>    cout&lt;&lt;f[n];<br>    return 0;<br>}<br>‘’’</p>
 
       
     </div>
@@ -324,7 +330,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/07/beibao/" rel="next" title="">
+              <a href="/2019/04/22/答辩总结/" rel="next" title="">
                 <i class="fa fa-chevron-left"></i> 
               </a>
             
@@ -334,8 +340,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/07/two/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/07/niceone/" rel="prev" title="this is a tittle">
+                this is a tittle <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -388,8 +394,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -431,6 +446,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#title-背包问题；author：tc；"><span class="nav-number">1.</span> <span class="nav-text">title:背包问题；author：tc；</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#0-1-背包。"><span class="nav-number"></span> <span class="nav-text">0/1 背包。</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
