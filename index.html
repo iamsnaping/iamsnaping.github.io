@@ -1141,7 +1141,13 @@
       
         
           
-            <p>when i good i really good;<br>when i bad i am better…………<br>i need some one to lean on…</p>
+            <hr>
+<h2 id="title-背包问题；author：tc；"><a href="#title-背包问题；author：tc；" class="headerlink" title="title:背包问题；author：tc；"></a>title:背包问题；author：tc；</h2><p>ohohoh！这是tc的第一篇博客呢。nice<br>这回是背包，自己感觉总是忘记然后就哎，说多了都是泪。ok。<br> 背包问题最主要的是状态转移方程。讲道理就最主要的是选和不选的问题。然后我个人觉得它就是优化版的贪心问题，其实他的状态转移方程就基本是贪心的思想。</p>
+<h1 id="0-1-背包。"><a href="#0-1-背包。" class="headerlink" title="0/1 背包。"></a>0/1 背包。</h1><p>这个是题大概就是每个物品只有一件，然后每个物品有他的价值和占用空间，然后就求最多价值可以试多少。<br>题目：<a href="http://oj.noi.cn/oj/#main/show/1159" target="_blank" rel="noopener">0/1背包</a><br>这是他的状态转移方程<br>f[n] = max(f[n - w[i]] + v[i] , f[n])<br>这就是他的状态转移方程。<br>因为他的每个物品只能用一次，所以为了避免重复使用所以我们从后开始遍历。以下是代码   </p>
+<p>‘’’</p>
+<p>#include<iostream><br>using namespace std;</iostream></p>
+<p>int v[100000],w[100000],f[100000];</p>
+<p>int main(){<br>    int n,t;<br>    cin&gt;&gt;n&gt;&gt;t;<br>    int i = 0;<br>    for(i;i &lt; t;i++) cin&gt;&gt;w[i] &gt;&gt; v[i];<br>    i = 0;<br>    int j = 0;<br>    for(;i &lt; t;i++)<br>        for(j = n;j &gt;= w[i];j–)<br>            f[j] = max(f[j],f[j - w[i]] + v[i]);<br>    cout&lt;&lt;f[n];<br>    return 0;<br>}<br>‘’’</p>
 
           
         
