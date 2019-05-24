@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="复杂度nlogn;这里主要是贪心的思想；既然要求最长上升子序列那么，就要保证，第i（i &amp;gt; 0)个数他是的比他前一个数大的最小的一个数就有个数组存储当前的最长序列及他的值。当第i个数比这个个数组最后一个元素大的时候，那么此序列就添加一个数，反之，就在当前数列找一个刚好比他的的数来，然后替代他，这里是最关键的一步这里就不停的更新，他的最小值。然偶这里用的是二分查找。这里可以使用low_boun">
+<meta name="description" content="勤奋tc又来了这回是欧拉筛法先从头开始吧，一般的素数筛选基本就是从1开始计算然后一直除到那个数为止。基本就是两个for循环12345678for(int i = 0;i &amp;lt;= sqrt（n）;i++)&amp;#123;	for(int j = 2;j &amp;lt; i;j++)	&amp;#123;		if(i%j) break;	&amp;#125;	if(j == i) num[k++] = i;&amp;#125; 这">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最长上升子序列&amp;&amp;low_bound">
-<meta property="og:url" content="http://yoursite.com/2019/05/23/最长子序列&&low_bound/index.html">
+<meta property="og:title" content="欧拉筛法">
+<meta property="og:url" content="http://yoursite.com/2019/05/24/欧拉/index.html">
 <meta property="og:site_name" content="一个不愿透露姓名的网友的博客">
-<meta property="og:description" content="复杂度nlogn;这里主要是贪心的思想；既然要求最长上升子序列那么，就要保证，第i（i &amp;gt; 0)个数他是的比他前一个数大的最小的一个数就有个数组存储当前的最长序列及他的值。当第i个数比这个个数组最后一个元素大的时候，那么此序列就添加一个数，反之，就在当前数列找一个刚好比他的的数来，然后替代他，这里是最关键的一步这里就不停的更新，他的最小值。然偶这里用的是二分查找。这里可以使用low_boun">
+<meta property="og:description" content="勤奋tc又来了这回是欧拉筛法先从头开始吧，一般的素数筛选基本就是从1开始计算然后一直除到那个数为止。基本就是两个for循环12345678for(int i = 0;i &amp;lt;= sqrt（n）;i++)&amp;#123;	for(int j = 2;j &amp;lt; i;j++)	&amp;#123;		if(i%j) break;	&amp;#125;	if(j == i) num[k++] = i;&amp;#125; 这">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-23T07:19:24.017Z">
+<meta property="og:updated_time" content="2019-05-24T09:08:56.301Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最长上升子序列&amp;&amp;low_bound">
-<meta name="twitter:description" content="复杂度nlogn;这里主要是贪心的思想；既然要求最长上升子序列那么，就要保证，第i（i &amp;gt; 0)个数他是的比他前一个数大的最小的一个数就有个数组存储当前的最长序列及他的值。当第i个数比这个个数组最后一个元素大的时候，那么此序列就添加一个数，反之，就在当前数列找一个刚好比他的的数来，然后替代他，这里是最关键的一步这里就不停的更新，他的最小值。然偶这里用的是二分查找。这里可以使用low_boun">
+<meta name="twitter:title" content="欧拉筛法">
+<meta name="twitter:description" content="勤奋tc又来了这回是欧拉筛法先从头开始吧，一般的素数筛选基本就是从1开始计算然后一直除到那个数为止。基本就是两个for循环12345678for(int i = 0;i &amp;lt;= sqrt（n）;i++)&amp;#123;	for(int j = 2;j &amp;lt; i;j++)	&amp;#123;		if(i%j) break;	&amp;#125;	if(j == i) num[k++] = i;&amp;#125; 这">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/23/最长子序列&&low_bound/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/24/欧拉/">
 
 
 
 
 
-  <title>最长上升子序列&&low_bound | 一个不愿透露姓名的网友的博客</title>
+  <title>欧拉筛法 | 一个不愿透露姓名的网友的博客</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/23/最长子序列&&low_bound/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/24/欧拉/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="无敌 .2.0">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">最长上升子序列&&low_bound</h1>
+          <h1 class="post-title" itemprop="name headline">欧拉筛法</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-23T15:13:37+08:00">
-                2019-05-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-24T13:27:57+08:00">
+                2019-05-24
               </time>
             
 
@@ -299,7 +299,9 @@
       
 
       
-        <p>复杂度nlogn;<br>这里主要是贪心的思想；<br>既然要求最长上升子序列那么，就要保证，第i（i &gt; 0)个数他是的比他前一个数大的最小的一个数<br>就有个数组存储当前的最长序列及他的值。<br>当第i个数比这个个数组最后一个元素大的时候，那么此序列就添加一个数，反之，就在当前数列找一个刚好比他的的数来，然后替代他，<br>这里是最关键的一步这里就不停的更新，他的最小值。然偶这里用的是二分查找。这里可以使用low_bound函数，他是查找当前最小的比num这个数大的数，然后返回地址不存在则返回end，upper_bound则反之<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int v[1100000],f[1100000];</span><br><span class="line"></span><br><span class="line">void me(int a)</span><br><span class="line">&#123;</span><br><span class="line">	int i = 0;</span><br><span class="line">	for(i;i &lt; a;i++) v[i] = 0,f[i] = 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	int n ;</span><br><span class="line">	ios::sync_with_stdio(false);</span><br><span class="line">	while(cin &gt;&gt; n)</span><br><span class="line">	&#123;</span><br><span class="line">		int i = 0;</span><br><span class="line">		while(i &lt; n) cin&gt;&gt;v[i++];</span><br><span class="line">		f[0] = v[0];</span><br><span class="line">		int len = 0;</span><br><span class="line">		for(i = 1;i &lt; n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			if(v[i] &gt; f[len]) f[++len] = v[i];</span><br><span class="line">			else&#123;</span><br><span class="line">				int j = lower_bound(f,f+len,v[i]) - f;</span><br><span class="line">				f[j] = v[i];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		cout&lt;&lt;++len&lt;&lt;endl;</span><br><span class="line">	    me(n);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>勤奋tc又来了这回是欧拉筛法<br>先从头开始吧，一般的素数筛选基本就是从1开始计算然后一直除到那个数为止。基本就是两个for循环<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for(int i = 0;i &lt;= sqrt（n）;i++)</span><br><span class="line">&#123;</span><br><span class="line">	for(int j = 2;j &lt; i;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(i%j) break;</span><br><span class="line">	&#125;</span><br><span class="line">	if(j == i) num[k++] = i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这一种的复杂度很大大概是o（n * sqrt（n））这是一种复杂度很大的算法，一般不会用这个。这里就有一个欧拉筛法了，时间复杂度大概在o（n）左右我们可以知道，每一个素数的n倍都是合数，所以我们找到一个素数的时候就可以将他的n次倍都标计。<br>以下是代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int num[1000000];</span><br><span class="line">bool vis[100000];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void f(int a) &#123;</span><br><span class="line">	int i = 2;</span><br><span class="line">	for(i; i &lt;= a; i++) &#123;</span><br><span class="line">		if(!vis[i])</span><br><span class="line">			num[++num[0]] = i;</span><br><span class="line">		int len = num[0];</span><br><span class="line">		int j = 1;</span><br><span class="line">		for(j; j &lt;= len &amp;&amp; i * num[j] &lt;= a; j++) &#123;</span><br><span class="line">			vis[i * num[j]] = true;</span><br><span class="line">			if(i%num[j] == 0) break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	f(n);</span><br><span class="line">	int len = num[0];</span><br><span class="line">	for(int i = 1; i &lt;= len; i++) cout&lt;&lt;num[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>一个合数有可能不止一个因数，所以这样写的话可能就会导致一个数被重复标记，这样会多余耗时很多，所以我们在这添加一步，i%num[j] == 0 break； 当num[j]是i的因数时，说明i有多个因数，他的更大的倍数可以由其他的更大的数来筛选掉，后面的筛选就没有必要了，所以从这里跳出循环。</p>
 
       
     </div>
@@ -324,8 +326,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/23/New Document/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2019/05/23/dijkstra/" rel="next" title="迪杰斯特拉&&优化  author：tc">
+                <i class="fa fa-chevron-left"></i> 迪杰斯特拉&&优化  author：tc
               </a>
             
           </div>
@@ -333,10 +335,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/23/dijkstra/" rel="prev" title="迪杰斯特拉&&优化  author：tc">
-                迪杰斯特拉&&优化  author：tc <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
