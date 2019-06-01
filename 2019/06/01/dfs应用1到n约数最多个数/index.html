@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="空格不知道能不能成功">
+<meta name="description" content="题目:牛客网想开了第二题首先求一个数约数的个数的公式举个例子12=22x31 那12的约数的个数就是（2+1）*（1+1）个所以这道题的思路就是求他的n以内中最大的数的因数的的指数的乘积的最大值，如果用暴力的话肯定会超时，而一般情况下越大的范围一般就他的约数的个数就越多。根据唯一分解定理，ans=p1e1xp2e2……pkek,pi为素数且p1&amp;lt;p2&amp;lt;…&amp;lt;pk,那么必有e1&amp;gt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="title">
-<meta property="og:url" content="http://yoursite.com/2019/05/14/try/index.html">
+<meta property="og:title" content="dfs应用">
+<meta property="og:url" content="http://yoursite.com/2019/06/01/dfs应用1到n约数最多个数/index.html">
 <meta property="og:site_name" content="一个不愿透露姓名的网友的博客">
-<meta property="og:description" content="空格不知道能不能成功">
+<meta property="og:description" content="题目:牛客网想开了第二题首先求一个数约数的个数的公式举个例子12=22x31 那12的约数的个数就是（2+1）*（1+1）个所以这道题的思路就是求他的n以内中最大的数的因数的的指数的乘积的最大值，如果用暴力的话肯定会超时，而一般情况下越大的范围一般就他的约数的个数就越多。根据唯一分解定理，ans=p1e1xp2e2……pkek,pi为素数且p1&amp;lt;p2&amp;lt;…&amp;lt;pk,那么必有e1&amp;gt">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-14T11:33:20.413Z">
+<meta property="og:updated_time" content="2019-06-01T06:58:28.992Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="title">
-<meta name="twitter:description" content="空格不知道能不能成功">
+<meta name="twitter:title" content="dfs应用">
+<meta name="twitter:description" content="题目:牛客网想开了第二题首先求一个数约数的个数的公式举个例子12=22x31 那12的约数的个数就是（2+1）*（1+1）个所以这道题的思路就是求他的n以内中最大的数的因数的的指数的乘积的最大值，如果用暴力的话肯定会超时，而一般情况下越大的范围一般就他的约数的个数就越多。根据唯一分解定理，ans=p1e1xp2e2……pkek,pi为素数且p1&amp;lt;p2&amp;lt;…&amp;lt;pk,那么必有e1&amp;gt">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/14/try/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/01/dfs应用1到n约数最多个数/">
 
 
 
 
 
-  <title>title | 一个不愿透露姓名的网友的博客</title>
+  <title>dfs应用 | 一个不愿透露姓名的网友的博客</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/14/try/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/01/dfs应用1到n约数最多个数/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="无敌 .2.0">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">title</h1>
+          <h1 class="post-title" itemprop="name headline">dfs应用</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-14T19:33:20+08:00">
-                2019-05-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-01T14:55:05+08:00">
+                2019-06-01
               </time>
             
 
@@ -299,7 +299,45 @@
       
 
       
-        <p>空格不知道能不能成功</p>
+        <p>题目:<a href="https://ac.nowcoder.com/acm/contest/907/B" target="_blank" rel="noopener">牛客网想开了第二题</a><br>首先求一个数约数的个数的公式<br>举个例子<br>12=2<sup>2</sup>x3<sup>1</sup> 那12的约数的个数就是（2+1）*（1+1）个<br>所以这道题的思路就是求他的n以内中最大的数的因数的的指数的乘积的最大值，如果用暴力的话肯定会超时，而一般情况下越大的范围一般就他的约数的个数就越多。<br>根据唯一分解定理，ans=p1<sup>e1</sup>xp2<sup>e2</sup>……pk<sup>ek</sup>,pi为素数且p1&lt;p2&lt;…&lt;pk,<br>那么必有e1&gt;=e2&gt;=…&gt;=ek，(贪心)即后一个素数的幂肯定小于等于前一个素数的幂，这里就用dfs来搜索他的个数。<br>他的数据给的是10<sup>9</sup>所以不用太多的因数，15个足够。<br>code:</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+
+typedef long long ll;
+
+ll res[15]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47};
+
+ll total=0;
+ll number;
+
+void dfs(ll k,int lim,ll num,ll cnt){
+    if(k&gt;14) return;
+    total=max(total,cnt);
+    int i=1;
+    for(i;i&lt;=lim;i++){
+        if(num&lt;=number/res[k]){
+            num*=res[k];
+            dfs(k+1,i,num,cnt*(i+1));
+        }else break;
+    }
+}
+
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int t;
+    cin&gt;&gt;t;
+    int i=0;
+    for(i;i&lt;t;i++){
+        cin&gt;&gt;number;
+        total=1;
+        dfs(0,15,1,1);
+        cout&lt;&lt;total&lt;&lt;endl;
+    }
+    return 0;
+}
+</code></pre><p><strong><font style="color:red;"><strong>注意</strong></font></strong>：这里用的是num&lt;=number/res[k] 主要是防止ll爆掉如果用res[k]*num&lt;=number，long long 可能就爆了。</p>
 
       
     </div>
@@ -324,8 +362,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/14/sad/" rel="next" title="private">
-                <i class="fa fa-chevron-left"></i> private
+              <a href="/2019/05/27/最小生成树&&krustal/" rel="next" title="krustal,最小生成树">
+                <i class="fa fa-chevron-left"></i> krustal,最小生成树
               </a>
             
           </div>
@@ -333,10 +371,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/22/背包/" rel="prev" title="背包问题；author：tc；">
-                背包问题；author：tc； <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
