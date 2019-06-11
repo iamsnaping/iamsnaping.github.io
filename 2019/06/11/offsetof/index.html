@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="这里求得是结构体ST他的某一成员的的地址偏移量。就是MEMBER这个成员地址比他的结构体多了多少。首先int p=(int )0 cout&amp;lt;&amp;lt;p;他的结果是0，他这里虽然有强制转换，但是赋值的时候他赋0，p的值就是0，不管怎么转换0就是0。所以从内层开始，他这里将0的类型转换成了ST类型，然后取他的成员MEMBER，最后在外面取了地址，（size_t就相当于unsigned int）">
+<meta name="description" content="这里求得是结构体ST他的某一成员的的地址偏移量。就是MEMBER这个成员地址比他的结构体多了多少。首先12int *p=(int *)0 ;cout&amp;lt;&amp;lt;p; 他的结果是0，他这里虽然有强制转换，但是赋值的时候他赋0，p的值就是0，不管怎么转换0就是0。所以从内层开始，他这里将0的类型转换成了ST类型，然后取他的成员MEMBER，最后在外面取了地址，（size_t就相当于unsigne">
 <meta property="og:type" content="article">
 <meta property="og:title" content="offsetof 宏定义">
 <meta property="og:url" content="http://yoursite.com/2019/06/11/offsetof/index.html">
 <meta property="og:site_name" content="一个不愿透露姓名的网友的博客">
-<meta property="og:description" content="这里求得是结构体ST他的某一成员的的地址偏移量。就是MEMBER这个成员地址比他的结构体多了多少。首先int p=(int )0 cout&amp;lt;&amp;lt;p;他的结果是0，他这里虽然有强制转换，但是赋值的时候他赋0，p的值就是0，不管怎么转换0就是0。所以从内层开始，他这里将0的类型转换成了ST类型，然后取他的成员MEMBER，最后在外面取了地址，（size_t就相当于unsigned int）">
+<meta property="og:description" content="这里求得是结构体ST他的某一成员的的地址偏移量。就是MEMBER这个成员地址比他的结构体多了多少。首先12int *p=(int *)0 ;cout&amp;lt;&amp;lt;p; 他的结果是0，他这里虽然有强制转换，但是赋值的时候他赋0，p的值就是0，不管怎么转换0就是0。所以从内层开始，他这里将0的类型转换成了ST类型，然后取他的成员MEMBER，最后在外面取了地址，（size_t就相当于unsigne">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/iamsnaping/picture/master/%E9%A2%98%E7%9B%AE.png">
-<meta property="og:updated_time" content="2019-06-11T04:13:08.211Z">
+<meta property="og:updated_time" content="2019-06-11T04:16:29.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="offsetof 宏定义">
-<meta name="twitter:description" content="这里求得是结构体ST他的某一成员的的地址偏移量。就是MEMBER这个成员地址比他的结构体多了多少。首先int p=(int )0 cout&amp;lt;&amp;lt;p;他的结果是0，他这里虽然有强制转换，但是赋值的时候他赋0，p的值就是0，不管怎么转换0就是0。所以从内层开始，他这里将0的类型转换成了ST类型，然后取他的成员MEMBER，最后在外面取了地址，（size_t就相当于unsigned int）">
+<meta name="twitter:description" content="这里求得是结构体ST他的某一成员的的地址偏移量。就是MEMBER这个成员地址比他的结构体多了多少。首先12int *p=(int *)0 ;cout&amp;lt;&amp;lt;p; 他的结果是0，他这里虽然有强制转换，但是赋值的时候他赋0，p的值就是0，不管怎么转换0就是0。所以从内层开始，他这里将0的类型转换成了ST类型，然后取他的成员MEMBER，最后在外面取了地址，（size_t就相当于unsigne">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/iamsnaping/picture/master/%E9%A2%98%E7%9B%AE.png">
 
 
@@ -302,7 +302,8 @@
 
       
         <p><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/%E9%A2%98%E7%9B%AE.png" alt="offsetof"></p>
-<p>这里求得是结构体ST他的某一成员的的地址偏移量。就是MEMBER这个成员地址比他的结构体多了多少。<br>首先int <em>p=(int </em>)0 cout&lt;&lt;p;<br>他的结果是0，他这里虽然有强制转换，但是赋值的时候他赋0，p的值就是0，不管怎么转换0就是0。<br>所以从内层开始，他这里将0的类型转换成了ST类型，然后取他的成员MEMBER，最后在外面取了地址，（size_t就相当于unsigned int）。<br>成员的地址相当于首地址+偏移量，这里他的首地址为0了，所以直接取的地址就是偏移量了。</p>
+<p>这里求得是结构体ST他的某一成员的的地址偏移量。就是MEMBER这个成员地址比他的结构体多了多少。<br>首先<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int *p=(int *)0 ;</span><br><span class="line">cout&lt;&lt;p;</span><br></pre></td></tr></table></figure></p>
+<p>他的结果是0，他这里虽然有强制转换，但是赋值的时候他赋0，p的值就是0，不管怎么转换0就是0。<br>所以从内层开始，他这里将0的类型转换成了ST类型，然后取他的成员MEMBER，最后在外面取了地址，（size_t就相当于unsigned int）。<br>成员的地址相当于首地址+偏移量，这里他的首地址为0了，所以直接取的地址就是偏移量了。</p>
 
       
     </div>
