@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="2.半导体存储芯片简介基本结构地址线+数据线 片选线  作用译码方式线选法所选中线工作其他不工作，线的排布很密集。对容量大的芯片不合适。重合法行列坐标适用存储矩阵小结假设20根地址线线选法：溢出1m条重合法则是：溢出2k条3.随机存取储存器（RAM）1.静态RAM（SRAM）2.动态RAM（DRAM）读操作时：预信号充电T4充电，VDD通过T4给读数据线充电。当选择读数据是读选择先被充电T2导通，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="主存储器">
+<meta property="og:url" content="http://yoursite.com/2020/05/04/3/index.html">
+<meta property="og:site_name" content="一个不愿透露姓名的网友的博客">
+<meta property="og:description" content="2.半导体存储芯片简介基本结构地址线+数据线 片选线  作用译码方式线选法所选中线工作其他不工作，线的排布很密集。对容量大的芯片不合适。重合法行列坐标适用存储矩阵小结假设20根地址线线选法：溢出1m条重合法则是：溢出2k条3.随机存取储存器（RAM）1.静态RAM（SRAM）2.动态RAM（DRAM）读操作时：预信号充电T4充电，VDD通过T4给读数据线充电。当选择读数据是读选择先被充电T2导通，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/iamsnaping/picture/master/72.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/iamsnaping/picture/master/73.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/iamsnaping/picture/master/74.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/iamsnaping/picture/master/75.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/iamsnaping/picture/master/76.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/iamsnaping/picture/master/77.png">
+<meta property="og:updated_time" content="2020-05-04T09:35:31.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="主存储器">
+<meta name="twitter:description" content="2.半导体存储芯片简介基本结构地址线+数据线 片选线  作用译码方式线选法所选中线工作其他不工作，线的排布很密集。对容量大的芯片不合适。重合法行列坐标适用存储矩阵小结假设20根地址线线选法：溢出1m条重合法则是：溢出2k条3.随机存取储存器（RAM）1.静态RAM（SRAM）2.动态RAM（DRAM）读操作时：预信号充电T4充电，VDD通过T4给读数据线充电。当选择读数据是读选择先被充电T2导通，">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/iamsnaping/picture/master/72.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/04/3/">
+
+
+
+
+
+  <title>主存储器 | 一个不愿透露姓名的网友的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一个不愿透露姓名的网友的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">真香</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/04/3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="无敌 .2.0">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个不愿透露姓名的网友的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">主存储器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-04T17:37:14+08:00">
+                2020-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="2-半导体存储芯片简介"><a href="#2-半导体存储芯片简介" class="headerlink" title="2.半导体存储芯片简介"></a>2.半导体存储芯片简介</h2><h3 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h3><h4 id="地址线-数据线"><a href="#地址线-数据线" class="headerlink" title="地址线+数据线"></a>地址线+数据线</h4><p><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/72.png" alt=""></p>
+<h4 id="片选线"><a href="#片选线" class="headerlink" title="片选线"></a>片选线</h4><p><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/73.png" alt=""></p>
+<ul>
+<li>作用<br><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/74.png" alt=""><h3 id="译码方式"><a href="#译码方式" class="headerlink" title="译码方式"></a>译码方式</h3><h4 id="线选法"><a href="#线选法" class="headerlink" title="线选法"></a>线选法</h4><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/75.png" alt=""><br>所选中线工作其他不工作，线的排布很密集。<br>对容量大的芯片不合适。<h4 id="重合法"><a href="#重合法" class="headerlink" title="重合法"></a>重合法</h4><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/76.png" alt=""><br>行列坐标<br>适用存储矩阵<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4>假设20根地址线<br>线选法：溢出1m条<br>重合法则是：溢出2k条<h2 id="3-随机存取储存器（RAM）"><a href="#3-随机存取储存器（RAM）" class="headerlink" title="3.随机存取储存器（RAM）"></a>3.随机存取储存器（RAM）</h2><h3 id="1-静态RAM（SRAM）"><a href="#1-静态RAM（SRAM）" class="headerlink" title="1.静态RAM（SRAM）"></a>1.静态RAM（SRAM）</h3><h3 id="2-动态RAM（DRAM）"><a href="#2-动态RAM（DRAM）" class="headerlink" title="2.动态RAM（DRAM）"></a>2.动态RAM（DRAM）</h3>读操作时：<br>预信号充电T4充电，VDD通过T4给读数据线充电。当选择读数据是读选择先被充电T2导通，如果，数据是1电容cg被充电，T1导通，数据线放电，此时数据线就是0.如果数据是0电容未充电，T1未导通，数据线不放电数据线读到的是1.<br><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/77.png" alt=""><br>写操作：<br>如果写入的是1数据线通过T3向电容充电写入1，反之电容放电。<br>写入信息相同读出相反。<h3 id="动态RAM刷新"><a href="#动态RAM刷新" class="headerlink" title="动态RAM刷新"></a>动态RAM刷新</h3><strong>刷新与行地址有关</strong><h4 id="集中刷新"><a href="#集中刷新" class="headerlink" title="集中刷新"></a>集中刷新</h4><ul>
+<li>集中式刷新</li>
+</ul>
+</li>
+<li>集中在某一时间内刷新<ul>
+<li>有死区<h4 id="分散刷新"><a href="#分散刷新" class="headerlink" title="分散刷新"></a>分散刷新</h4>写入后刷新</li>
+<li>增长读写周期</li>
+<li>芯片性能下降</li>
+<li>刷新太频繁<h4 id="异步刷新（分散和集中结合）"><a href="#异步刷新（分散和集中结合）" class="headerlink" title="异步刷新（分散和集中结合）"></a>异步刷新（分散和集中结合）</h4></li>
+<li>每隔一段时间刷新一行</li>
+<li>刷新安排在译码阶段，不会产生死区<h3 id="3-对比"><a href="#3-对比" class="headerlink" title="3.对比"></a>3.对比</h3><h2 id="4-只读存储器（ROM）"><a href="#4-只读存储器（ROM）" class="headerlink" title="4.只读存储器（ROM）"></a>4.只读存储器（ROM）</h2><h2 id="4-存储器与cpu连接"><a href="#4-存储器与cpu连接" class="headerlink" title="4.存储器与cpu连接"></a>4.存储器与cpu连接</h2><h2 id="5-存储器的校验"><a href="#5-存储器的校验" class="headerlink" title="5.存储器的校验"></a>5.存储器的校验</h2><h2 id="6-存储器的校验"><a href="#6-存储器的校验" class="headerlink" title="6.存储器的校验"></a>6.存储器的校验</h2><h2 id="7-提高访存速度的措施"><a href="#7-提高访存速度的措施" class="headerlink" title="7.提高访存速度的措施"></a>7.提高访存速度的措施</h2></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/22/2/" rel="next" title="存储器">
+                <i class="fa fa-chevron-left"></i> 存储器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">无敌 .2.0</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-半导体存储芯片简介"><span class="nav-number">1.</span> <span class="nav-text">2.半导体存储芯片简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本结构"><span class="nav-number">1.1.</span> <span class="nav-text">基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#地址线-数据线"><span class="nav-number">1.1.1.</span> <span class="nav-text">地址线+数据线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#片选线"><span class="nav-number">1.1.2.</span> <span class="nav-text">片选线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#译码方式"><span class="nav-number">1.2.</span> <span class="nav-text">译码方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线选法"><span class="nav-number">1.2.1.</span> <span class="nav-text">线选法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重合法"><span class="nav-number">1.2.2.</span> <span class="nav-text">重合法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">1.2.3.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-随机存取储存器（RAM）"><span class="nav-number">2.</span> <span class="nav-text">3.随机存取储存器（RAM）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-静态RAM（SRAM）"><span class="nav-number">2.1.</span> <span class="nav-text">1.静态RAM（SRAM）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-动态RAM（DRAM）"><span class="nav-number">2.2.</span> <span class="nav-text">2.动态RAM（DRAM）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态RAM刷新"><span class="nav-number">2.3.</span> <span class="nav-text">动态RAM刷新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#集中刷新"><span class="nav-number">2.3.1.</span> <span class="nav-text">集中刷新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分散刷新"><span class="nav-number">2.3.2.</span> <span class="nav-text">分散刷新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步刷新（分散和集中结合）"><span class="nav-number">2.3.3.</span> <span class="nav-text">异步刷新（分散和集中结合）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-对比"><span class="nav-number">2.4.</span> <span class="nav-text">3.对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-只读存储器（ROM）"><span class="nav-number">3.</span> <span class="nav-text">4.只读存储器（ROM）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-存储器与cpu连接"><span class="nav-number">4.</span> <span class="nav-text">4.存储器与cpu连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-存储器的校验"><span class="nav-number">5.</span> <span class="nav-text">5.存储器的校验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-存储器的校验"><span class="nav-number">6.</span> <span class="nav-text">6.存储器的校验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-提高访存速度的措施"><span class="nav-number">7.</span> <span class="nav-text">7.提高访存速度的措施</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">无敌 .2.0</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

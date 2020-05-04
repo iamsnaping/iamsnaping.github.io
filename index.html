@@ -229,6 +229,142 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/04/3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="无敌 .2.0">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个不愿透露姓名的网友的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/04/3/" itemprop="url">主存储器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-04T17:37:14+08:00">
+                2020-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="2-半导体存储芯片简介"><a href="#2-半导体存储芯片简介" class="headerlink" title="2.半导体存储芯片简介"></a>2.半导体存储芯片简介</h2><h3 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h3><h4 id="地址线-数据线"><a href="#地址线-数据线" class="headerlink" title="地址线+数据线"></a>地址线+数据线</h4><p><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/72.png" alt=""></p>
+<h4 id="片选线"><a href="#片选线" class="headerlink" title="片选线"></a>片选线</h4><p><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/73.png" alt=""></p>
+<ul>
+<li>作用<br><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/74.png" alt=""><h3 id="译码方式"><a href="#译码方式" class="headerlink" title="译码方式"></a>译码方式</h3><h4 id="线选法"><a href="#线选法" class="headerlink" title="线选法"></a>线选法</h4><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/75.png" alt=""><br>所选中线工作其他不工作，线的排布很密集。<br>对容量大的芯片不合适。<h4 id="重合法"><a href="#重合法" class="headerlink" title="重合法"></a>重合法</h4><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/76.png" alt=""><br>行列坐标<br>适用存储矩阵<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4>假设20根地址线<br>线选法：溢出1m条<br>重合法则是：溢出2k条<h2 id="3-随机存取储存器（RAM）"><a href="#3-随机存取储存器（RAM）" class="headerlink" title="3.随机存取储存器（RAM）"></a>3.随机存取储存器（RAM）</h2><h3 id="1-静态RAM（SRAM）"><a href="#1-静态RAM（SRAM）" class="headerlink" title="1.静态RAM（SRAM）"></a>1.静态RAM（SRAM）</h3><h3 id="2-动态RAM（DRAM）"><a href="#2-动态RAM（DRAM）" class="headerlink" title="2.动态RAM（DRAM）"></a>2.动态RAM（DRAM）</h3>读操作时：<br>预信号充电T4充电，VDD通过T4给读数据线充电。当选择读数据是读选择先被充电T2导通，如果，数据是1电容cg被充电，T1导通，数据线放电，此时数据线就是0.如果数据是0电容未充电，T1未导通，数据线不放电数据线读到的是1.<br><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/77.png" alt=""><br>写操作：<br>如果写入的是1数据线通过T3向电容充电写入1，反之电容放电。<br>写入信息相同读出相反。<h3 id="动态RAM刷新"><a href="#动态RAM刷新" class="headerlink" title="动态RAM刷新"></a>动态RAM刷新</h3><strong>刷新与行地址有关</strong><h4 id="集中刷新"><a href="#集中刷新" class="headerlink" title="集中刷新"></a>集中刷新</h4><ul>
+<li>集中式刷新</li>
+</ul>
+</li>
+<li>集中在某一时间内刷新<ul>
+<li>有死区<h4 id="分散刷新"><a href="#分散刷新" class="headerlink" title="分散刷新"></a>分散刷新</h4>写入后刷新</li>
+<li>增长读写周期</li>
+<li>芯片性能下降</li>
+<li>刷新太频繁<h4 id="异步刷新（分散和集中结合）"><a href="#异步刷新（分散和集中结合）" class="headerlink" title="异步刷新（分散和集中结合）"></a>异步刷新（分散和集中结合）</h4></li>
+<li>每隔一段时间刷新一行</li>
+<li>刷新安排在译码阶段，不会产生死区<h3 id="3-对比"><a href="#3-对比" class="headerlink" title="3.对比"></a>3.对比</h3><h2 id="4-只读存储器（ROM）"><a href="#4-只读存储器（ROM）" class="headerlink" title="4.只读存储器（ROM）"></a>4.只读存储器（ROM）</h2><h2 id="4-存储器与cpu连接"><a href="#4-存储器与cpu连接" class="headerlink" title="4.存储器与cpu连接"></a>4.存储器与cpu连接</h2><h2 id="5-存储器的校验"><a href="#5-存储器的校验" class="headerlink" title="5.存储器的校验"></a>5.存储器的校验</h2><h2 id="6-存储器的校验"><a href="#6-存储器的校验" class="headerlink" title="6.存储器的校验"></a>6.存储器的校验</h2><h2 id="7-提高访存速度的措施"><a href="#7-提高访存速度的措施" class="headerlink" title="7.提高访存速度的措施"></a>7.提高访存速度的措施</h2></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/22/2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1613,128 +1749,6 @@ int main(){
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/最小生成树&&krustal/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="无敌 .2.0">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一个不愿透露姓名的网友的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/27/最小生成树&&krustal/" itemprop="url">krustal,最小生成树</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-27T12:50:13+08:00">
-                2019-05-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>tc is coming,上周的考试真是难受啊！！！！！！！<br>sad，可是还是要好好学算法啊！！！<br>讲道理，我感觉那些博客画那些图还有点看不懂，还是直接说比较好。。。。<br>他要求的其实就是n个点连起来最短的距离。基本可以这么理解。他最重要的一点就是先将个点到各点的距离从小到大排序，然后取最小的就是，这样就 可以取到最小值了！！！！！<br>然后怎么判断有没有重复？那就是并查集来判断有没有在同根了。<br>下面上提目：<br><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/QQ%E6%88%AA%E5%9B%BE20190527124746.png" alt="最小生成树"></p>
-<p>code:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">struct wtc &#123;</span><br><span class="line">	int from,to;</span><br><span class="line">	ll len;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">wtc tc[500100];</span><br><span class="line">int pa[210000],ran[210000];</span><br><span class="line"></span><br><span class="line">bool judge(wtc a,wtc b) &#123;</span><br><span class="line">	return a.len &lt; b.len;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int find(int a) &#123;</span><br><span class="line">	return a == pa[a] ? a : pa[a] = find(pa[a]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void unite(int a,int b) &#123;</span><br><span class="line">	int x = find(a);</span><br><span class="line">	int y = find(b);</span><br><span class="line">	if(x!=y) &#123;</span><br><span class="line">		if(ran[x] &gt; ran[y]) pa[y] = x;</span><br><span class="line">		else &#123;</span><br><span class="line">			pa[x] = y;</span><br><span class="line">			if(x == y) ran[x]++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	ios::sync_with_stdio(false);</span><br><span class="line">	cin.tie(NULL);</span><br><span class="line">	int n,m;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	int i = 0;</span><br><span class="line">	for(; i &lt; m; i++)	cin&gt;&gt;tc[i].from &gt;&gt; tc[i].to &gt;&gt; tc[i].len;</span><br><span class="line">	sort(tc,tc + m,judge);</span><br><span class="line">	for(i = 1; i &lt;= n; i++) pa[i] = i;</span><br><span class="line">	int k = 1;</span><br><span class="line">	ll total = 0;</span><br><span class="line">	for(i = 0; i &lt; m; i++) &#123;</span><br><span class="line">		if(k == n) break;</span><br><span class="line">		if(pa[tc[i].from] != pa[tc[i].to]) &#123;</span><br><span class="line">		    total += tc[i].len;</span><br><span class="line">		    unite(tc[i].from,tc[i].to);</span><br><span class="line">			k++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;total;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>能不能用二维数组或者一个bool数组判断是否有遍历过？答案是不行的。因为数组和bool只能判断是否用过，这样可能会忽略掉一些东西。比如<br>1 2 1<br>3 4 1<br>2 3 1<br>这样的一组数据用bool或者数组存的话只会加上前两种的长度，不会加上第三个，各样他们就不能连在一起了。并查集则可以将他们连在一起，已经连接过的便不再连接，又因为这里的数组是用sort拍过序的，所以取得就是最小值。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1785,7 +1799,7 @@ int main(){
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
