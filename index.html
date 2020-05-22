@@ -543,10 +543,53 @@
 <li>DMA方式<ul>
 <li>主存和I/O设备中有一条直接的数据通道</li>
 <li>周期窃取（周期挪用）</li>
-<li>不中断现行程序<h4 id="三种方式比较"><a href="#三种方式比较" class="headerlink" title="三种方式比较"></a>三种方式比较</h4><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/87.png" alt="87"></li>
+<li>不中断现行程序<h4 id="三种方式比较"><a href="#三种方式比较" class="headerlink" title="三种方式比较"></a>三种方式比较</h4><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/87.png" alt="87"><h2 id="外部设备-I-O设备"><a href="#外部设备-I-O设备" class="headerlink" title="外部设备(I/O设备)"></a>外部设备(I/O设备)</h2></li>
 </ul>
 </li>
 </ul>
+<h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>主机<->I/O接口<->(外部设备)设备控制器<->光、电、磁部分(外部设备)</-></-></-></p>
+<ul>
+<li>外部设备<ul>
+<li>人机交互设备</li>
+<li>计算机信息存储设备</li>
+<li>机-机之间通信设备</li>
+</ul>
+</li>
+<li>输入设备<ul>
+<li>键盘<ul>
+<li>编码键盘法</li>
+</ul>
+</li>
+<li>鼠标</li>
+<li>触摸屏</li>
+</ul>
+</li>
+<li>输出设备<ul>
+<li>显示器<ul>
+<li>字符显示</li>
+<li>图形显示（主观画图）</li>
+<li>图像显示</li>
+</ul>
+</li>
+<li>打印机</li>
+</ul>
+</li>
+<li>其他</li>
+<li>多媒体技术<h2 id="I-O接口"><a href="#I-O接口" class="headerlink" title="I/O接口"></a>I/O接口</h2><h3 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h3><h3 id="接口功能和组成"><a href="#接口功能和组成" class="headerlink" title="接口功能和组成"></a>接口功能和组成</h3><h4 id="1-总线连接方式的I-O接口电路"><a href="#1-总线连接方式的I-O接口电路" class="headerlink" title="1.总线连接方式的I/O接口电路"></a>1.总线连接方式的I/O接口电路</h4><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/88.png" alt="88"><h4 id="2-接口的功能和组成"><a href="#2-接口的功能和组成" class="headerlink" title="2.接口的功能和组成"></a>2.接口的功能和组成</h4>|功能|组成|<br>|—|—|<br>|选址功能|设备选择电路|<br>|传送命令功能|命令寄存器、命令译码器|<br>|传送数据功能|数据缓冲寄存器|<br>|反映设备状态功能|设备状态标记|<h4 id="3-I-O基本接口组成"><a href="#3-I-O基本接口组成" class="headerlink" title="3.I/O基本接口组成"></a>3.I/O基本接口组成</h4><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/89.png" alt="89"><h3 id="接口类型"><a href="#接口类型" class="headerlink" title="接口类型"></a>接口类型</h3><h4 id="接口分类"><a href="#接口分类" class="headerlink" title="接口分类"></a>接口分类</h4><h5 id="1-按数据传送方式"><a href="#1-按数据传送方式" class="headerlink" title="1.按数据传送方式"></a>1.按数据传送方式</h5></li>
+<li>并行接口</li>
+<li>串行串行<h5 id="2-按功能选择的灵活性分类"><a href="#2-按功能选择的灵活性分类" class="headerlink" title="2.按功能选择的灵活性分类"></a>2.按功能选择的灵活性分类</h5></li>
+<li>可编程接口</li>
+<li>不可编程接口<h5 id="3-按照通用性分类"><a href="#3-按照通用性分类" class="headerlink" title="3.按照通用性分类"></a>3.按照通用性分类</h5></li>
+<li>通用接口</li>
+<li>专用接口<h5 id="4-按照数据传送的控制方式分类"><a href="#4-按照数据传送的控制方式分类" class="headerlink" title="4.按照数据传送的控制方式分类"></a>4.按照数据传送的控制方式分类</h5></li>
+<li>中断方式</li>
+<li>DMA方式<h2 id="程序查询方式"><a href="#程序查询方式" class="headerlink" title="程序查询方式"></a>程序查询方式</h2><h3 id="1-程序查询流程"><a href="#1-程序查询流程" class="headerlink" title="1.程序查询流程"></a>1.程序查询流程</h3><h4 id="查询流程"><a href="#查询流程" class="headerlink" title="查询流程"></a>查询流程</h4><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/90.png" alt="90"><h3 id="2-程序流程"><a href="#2-程序流程" class="headerlink" title="2.程序流程"></a>2.程序流程</h3><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/91.png" alt="91"><h2 id="程序中断方式"><a href="#程序中断方式" class="headerlink" title="程序中断方式"></a>程序中断方式</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3>CPU在执行程序过程中，如果发生意外事件或者特殊事件，CPU要中断当前事件去处理特殊事件。通过执行中断服务程序的方式去处理特殊事件，处理结束后返回被中断程序的程序断点。<h3 id="I-O中断的产生"><a href="#I-O中断的产生" class="headerlink" title="I/O中断的产生"></a>I/O中断的产生</h3><img src="" alt="92"><h3 id="程序中断方式的接口电路"><a href="#程序中断方式的接口电路" class="headerlink" title="程序中断方式的接口电路"></a>程序中断方式的接口电路</h3></li>
+</ul>
+<ol>
+<li>配置中断请求触发器和中断请求屏蔽器</li>
+<li>排队器</li>
+<li>中断向量地址形成部分</li>
+</ol>
 
           
         
