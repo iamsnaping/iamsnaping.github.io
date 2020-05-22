@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="概述1.输入输出的发展 早期 分散连接 CPU和I/O设备串行工作，程序查询方式。   接口模块和DMA阶段 总线连接 CPU和I/O设备并行工作。1.中断方式。2.DMA方式   具有通道结构的阶段 具有I/O处理机阶段  I/O逐渐从CPU中独立出来 2.输入输出系统组成1.I/O软件 I/O指令 CPU指令的一部分操作码：标识I/O指令命令码：相当于普通指令的操作码设备码：I/O设备编码（地">
+<meta property="og:type" content="article">
+<meta property="og:title" content="输入输出系统&#x2F;概述">
+<meta property="og:url" content="http://yoursite.com/2020/05/18/输入输出/index.html">
+<meta property="og:site_name" content="一个不愿透露姓名的网友的博客">
+<meta property="og:description" content="概述1.输入输出的发展 早期 分散连接 CPU和I/O设备串行工作，程序查询方式。   接口模块和DMA阶段 总线连接 CPU和I/O设备并行工作。1.中断方式。2.DMA方式   具有通道结构的阶段 具有I/O处理机阶段  I/O逐渐从CPU中独立出来 2.输入输出系统组成1.I/O软件 I/O指令 CPU指令的一部分操作码：标识I/O指令命令码：相当于普通指令的操作码设备码：I/O设备编码（地">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/iamsnaping/picture/master/85.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/iamsnaping/picture/master/86.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/iamsnaping/picture/master/87.png">
+<meta property="og:updated_time" content="2020-05-20T08:39:36.455Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="输入输出系统&#x2F;概述">
+<meta name="twitter:description" content="概述1.输入输出的发展 早期 分散连接 CPU和I/O设备串行工作，程序查询方式。   接口模块和DMA阶段 总线连接 CPU和I/O设备并行工作。1.中断方式。2.DMA方式   具有通道结构的阶段 具有I/O处理机阶段  I/O逐渐从CPU中独立出来 2.输入输出系统组成1.I/O软件 I/O指令 CPU指令的一部分操作码：标识I/O指令命令码：相当于普通指令的操作码设备码：I/O设备编码（地">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/iamsnaping/picture/master/85.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/18/输入输出/">
+
+
+
+
+
+  <title>输入输出系统/概述 | 一个不愿透露姓名的网友的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一个不愿透露姓名的网友的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">真香</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/18/输入输出/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="无敌 .2.0">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个不愿透露姓名的网友的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">输入输出系统/概述</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-18T17:31:22+08:00">
+                2020-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="1-输入输出的发展"><a href="#1-输入输出的发展" class="headerlink" title="1.输入输出的发展"></a>1.输入输出的发展</h3><ol>
+<li>早期<ul>
+<li>分散连接</li>
+<li>CPU和I/O设备串行工作，程序查询方式。</li>
+</ul>
+</li>
+<li>接口模块和DMA阶段<ul>
+<li>总线连接</li>
+<li>CPU和I/O设备并行工作。1.中断方式。2.DMA方式</li>
+</ul>
+</li>
+<li>具有通道结构的阶段</li>
+<li>具有I/O处理机阶段</li>
+</ol>
+<p><strong>I/O逐渐从CPU中独立出来</strong></p>
+<h3 id="2-输入输出系统组成"><a href="#2-输入输出系统组成" class="headerlink" title="2.输入输出系统组成"></a>2.输入输出系统组成</h3><h4 id="1-I-O软件"><a href="#1-I-O软件" class="headerlink" title="1.I/O软件"></a>1.I/O软件</h4><ol>
+<li>I/O指令 CPU指令的一部分<br>操作码：标识I/O指令<br>命令码：相当于普通指令的操作码<br>设备码：I/O设备编码（地址）</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>操作码</th>
+<th>命令码</th>
+<th>设备码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>通道指令 通道自身指令<ul>
+<li>三个参数<ol>
+<li>数组的首地址 </li>
+<li>字数</li>
+<li>操作命令<h4 id="I-O硬件"><a href="#I-O硬件" class="headerlink" title="I/O硬件"></a>I/O硬件</h4></li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>设备通过I/O接口连接在总线上和主机完成信息交换</li>
+</ul>
+<p>通道方式：</p>
+<ul>
+<li>设备连接设备控制器连接子通道连接通道<h3 id="3-I-O设备和主机的联系方式"><a href="#3-I-O设备和主机的联系方式" class="headerlink" title="3.I/O设备和主机的联系方式"></a>3.I/O设备和主机的联系方式</h3>联系-&gt;得知I/O设备的地址-&gt;编址<h4 id="1-I-O设备的编址方式"><a href="#1-I-O设备的编址方式" class="headerlink" title="1.I/O设备的编址方式"></a>1.I/O设备的编址方式</h4><h5 id="1-统一编址"><a href="#1-统一编址" class="headerlink" title="1. 统一编址"></a>1. 统一编址</h5>用取数，存数指令<h5 id="2-不统一编址"><a href="#2-不统一编址" class="headerlink" title="2.不统一编址"></a>2.不统一编址</h5>有专门的I/O指令<h4 id="2-设备选址"><a href="#2-设备选址" class="headerlink" title="2.设备选址"></a>2.设备选址</h4>用设备选择电路识别是否被选中<h4 id="3-传送方式"><a href="#3-传送方式" class="headerlink" title="3.传送方式"></a>3.传送方式</h4>串行、并行<h4 id="4-联络方式"><a href="#4-联络方式" class="headerlink" title="4.联络方式"></a>4.联络方式</h4></li>
+</ul>
+<ol>
+<li>立即响应</li>
+<li>异步工作采用应答方式<ul>
+<li>并行</li>
+<li>并行</li>
+</ul>
+</li>
+<li>同步工作采用同步时标<h4 id="5-I-O设备和主机的连接方式"><a href="#5-I-O设备和主机的连接方式" class="headerlink" title="5.I/O设备和主机的连接方式"></a>5.I/O设备和主机的连接方式</h4></li>
+<li>辐射性连接<ul>
+<li>每台设备都有一套控制线路和一组信号线</li>
+<li>不利于增删设备</li>
+</ul>
+</li>
+<li>总线连接<ul>
+<li>便于增删设备<h3 id="4-I-O设备与主机信息传送的控制方式"><a href="#4-I-O设备与主机信息传送的控制方式" class="headerlink" title="4.I/O设备与主机信息传送的控制方式"></a>4.I/O设备与主机信息传送的控制方式</h3></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>程序查询方式<br><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/85.png" alt="85"></li>
+<li>程序中断方式<ul>
+<li>I/O设备准备数据时，CPU不进行查询</li>
+<li>I/O设备与主机进行信息交换时，CPU暂停现行程序</li>
+<li>没有踏步现象，中断现行程序</li>
+<li>CPU和I/O部分并行工作</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/86.png" alt="86"></p>
+<ul>
+<li>DMA方式<ul>
+<li>主存和I/O设备中有一条直接的数据通道</li>
+<li>周期窃取（周期挪用）</li>
+<li>不中断现行程序<h4 id="三种方式比较"><a href="#三种方式比较" class="headerlink" title="三种方式比较"></a>三种方式比较</h4><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/87.png" alt="87"></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/13/DMA/" rel="next" title="DMA(直接存储器访问)方式">
+                <i class="fa fa-chevron-left"></i> DMA(直接存储器访问)方式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/20/系统总线/" rel="prev" title="系统总线">
+                系统总线 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">无敌 .2.0</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-输入输出的发展"><span class="nav-number">1.1.</span> <span class="nav-text">1.输入输出的发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-输入输出系统组成"><span class="nav-number">1.2.</span> <span class="nav-text">2.输入输出系统组成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-I-O软件"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.I/O软件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#I-O硬件"><span class="nav-number">1.2.2.</span> <span class="nav-text">I/O硬件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-I-O设备和主机的联系方式"><span class="nav-number">1.3.</span> <span class="nav-text">3.I/O设备和主机的联系方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-I-O设备的编址方式"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.I/O设备的编址方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-统一编址"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">1. 统一编址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-不统一编址"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">2.不统一编址</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-设备选址"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.设备选址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-传送方式"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.传送方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-联络方式"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.联络方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-I-O设备和主机的连接方式"><span class="nav-number">1.3.5.</span> <span class="nav-text">5.I/O设备和主机的连接方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-I-O设备与主机信息传送的控制方式"><span class="nav-number">1.4.</span> <span class="nav-text">4.I/O设备与主机信息传送的控制方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三种方式比较"><span class="nav-number">1.4.1.</span> <span class="nav-text">三种方式比较</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">无敌 .2.0</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
