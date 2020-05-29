@@ -229,6 +229,283 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/29/计网知识点/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="无敌 .2.0">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个不愿透露姓名的网友的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/29/计网知识点/" itemprop="url">计网知识点</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-29T15:03:36+08:00">
+                2020-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="五层构架"><a href="#五层构架" class="headerlink" title="五层构架"></a>五层构架</h3><ol>
+<li>应用层：通过引用进程间的交互来完成特定网络的连接。应用层协议，应用进程间通信 <strong>交互的法则</strong>。</li>
+<li>运输层：为两台主机中进程之间的通信提供通用 <strong>数据传输服务</strong>。主要协议TCP、UDP。</li>
+<li>网络层：为分组交换网上的不同主机提供 <strong>通信服务</strong>。选择合适的路由。主要协议IP协议。</li>
+<li>链路层：将网络层的IP数据报 <strong>组成帧</strong>，在两个相邻的结点间的链路上 <strong>传送帧</strong>，<strong>检查纠错接收到的数据帧</strong>。每一帧包括数据和必要的<strong>控制信息</strong>。</li>
+<li>物理层：物理层上所传数据为<strong>比特流</strong>，考虑怎样才能在各种计算机的传输媒体上传输数据比特流。<strong>传送信息所需要的媒介不为物理层</strong>  。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">应用进程间-&gt;主机间进程-&gt;主机-&gt;主机-&gt;数据流</span><br><span class="line">进程间协议-&gt;提供主机间进程通信-&gt;寻找路由-&gt;封装成帧和控制信息-&gt;考虑传输的比特流的大小等参数</span><br><span class="line">TCP/IP协议为四层：应用层、运输层、网络层，网络接口层</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TCP:传输控制协议</span><br><span class="line">提供面向连接的、可靠的数据传输服务单位，报文段(segment)</span><br><span class="line">UDP：用户数据报协议</span><br><span class="line">提供无连接、尽最大努力的数据传输服务（不保证数据传输的可靠性）、单位用户数据报</span><br></pre></td></tr></table></figure>
+<p>协议的控制下，两个对等的实体间的通信使得本层能够向上一层提供服务。要实现本层协议，还需要下面一层所提供的服务。<br><strong>服务是垂直的，协议是水平的</strong></p>
+<h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><p>用于物理层的协议也被称为规程。</p>
+<h4 id="四大特性"><a href="#四大特性" class="headerlink" title="四大特性"></a>四大特性</h4><ol>
+<li>机械特性：接口所用接线器的形状和尺寸等</li>
+<li>电气特性：电平的范围</li>
+<li>功能特性：某范围电平的意义</li>
+<li>过程特性：不同功能的各种可能事件的出现顺序</li>
+</ol>
+<p>数据通信系统：源系统（发送端、发送方）、传输系统（传输网络）、目的系统（接收端、接收方）<br>单向通信：单工信道，只有一个方向课通信<br>双向替换通信：半双工信道，一方发一方接收，一段时间过后可以反过来<br>双向同时信道：全双工信道，双方可以同时发送和接收信号<br>基带信号：来自信源的信号<br>调制：解决基带信号中的低频分量或直流分量，使信道可以传输（许多信道不能传输这种低频分量或直流分量）</p>
+<h4 id="调制"><a href="#调制" class="headerlink" title="调制"></a>调制</h4><ol>
+<li>基带调制：对基带信号的波形进行变换，使得与信道特性相适应，变换后仍然是基带信号，这种调制是吧一种数字信号转换成另外一种数字信号，大多数人愿意把这种过程称为（编码）</li>
+<li>带通调制：使用载波进行调制，将基带信号的频率范围搬到较高的频段，并转化为模拟信号、调制之后的信号被称为带通信号。</li>
+</ol>
+<p>从概念上讲，限制码元在信道上传输速率的因素有两个：信道能通过的频率的范围，信噪比；<br>奈氏准则：在任何信道中，码元的速率都有上限，传输速率超过此上限，就会出现严重的<strong>码间串扰</strong>的问题，使接收端对码元的判断成为不可能。<br>信噪比：S/N 信号的平均功率/噪声的平均功率<br>信噪比=10log<sub>10</sub>(S/N)<br>香农公式：C=Wlog<sub>2</sub>(1+S/N)<br>C：信道极限传输功率<br>W：信号的带宽（Hz为单位）<br>频分复用：所有用户在同一时间占用不同的带宽资源<br>时分复用：所有用户在不同时间占用同样带宽资源<br>统计时分复用：将多个用户数据集中起来通过高速路线发送到一个远地计算机<br><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/%E8%AE%A1%E7%BD%91/7.png" alt=" github"><br><img src="C:/Users/22848/Desktop/git_picture/picture/计网/7.png" alt="本地"><br>波分复用：光的频分复用<br>码分复用：接收到的为所有信息的叠加<br><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/%E8%AE%A1%E7%BD%91/8.png" alt=""><br>T<sub>x</sub>为其他站的码片不止一个</p>
+<h3 id="3-数据链路层"><a href="#3-数据链路层" class="headerlink" title="3.数据链路层"></a>3.数据链路层</h3><p><strong>数据链路层三个基本问题：封装成帧、透明传输、差错检测</strong><br>MTU：最大传送单元<br>数据链路层的透明传输：对于数据来说本层为透明的，没有对数据做任何处理，但是去确实经过本层。无论什么样的比特组合·的数据，都能够按照原样没有差错地通过这个数据链路层。<br>在帧的头部和尾部都有一个控制符标识帧的开始和结束。<br>字节填充（字符字符填充）：为区别控制符和数据部分，解决透明传输问题。<br>在SOH，EOT前加一个转义字符（比如：ESC），如果数据本身还有转义字符则在转义字符前面添加一个转义字符。<br>误码率BER：传输错误比特数/传输总比特数</p>
+<h4 id="CRC"><a href="#CRC" class="headerlink" title="CRC"></a>CRC</h4><p>循环冗余检验（CRC）：把数据划分组。在每组后面添加n位冗余码。<br>循环冗余检验：只能做到对帧的无差错接受。实现无比特差错。<br>模二运算：加法和减法的时候不进位或者借位<br>冗余码：将待传数据M长度为k（2进制）与2<sup>n</sup>相乘，相当于为M尾部添加了n位0.得到（k+n）长度的数据。再用的得到的数据除以除数P（长度为n+1）得到n位余数加在之前的（k+n）位数据上。后面的n位就是冗余码。<br>如果传输过程无差错，则帧除以余数P得到的是0<br>FCS：在数据后面添加冗余码的的检错方法<br>CRC：实现FCS的一种方法</p>
+<h4 id="PPP协议点对点协议"><a href="#PPP协议点对点协议" class="headerlink" title="PPP协议点对点协议"></a>PPP协议点对点协议</h4><p>需满足要求：简单、封装成帧、透明性、支持多种网络协议、支持多种类型链路、差错检测、检测连接状态、最大传送单元、网络层地址协商、数据压缩协商</p>
+<h5 id="PPP协议组成"><a href="#PPP协议组成" class="headerlink" title="PPP协议组成"></a>PPP协议组成</h5><ol>
+<li>将IP数据报封装到串行链路的方法</li>
+<li>建立、配置和测试数据连接的链路控制协议LCP</li>
+<li>网络控制协议NCP</li>
+</ol>
+<h6 id="帧组成"><a href="#帧组成" class="headerlink" title="帧组成"></a>帧组成</h6><table>
+<thead>
+<tr>
+<th>F</th>
+<th>A</th>
+<th>C</th>
+<th>协议</th>
+<th>信息部分</th>
+<th>FCS</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7E</td>
+<td>FF</td>
+<td>03</td>
+<td>协议</td>
+<td>数据部分</td>
+<td>冗余码</td>
+<td>7E</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>MTU=1500</td>
+<td>2</td>
+<td>1</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>AC字段目前未规定明确意义，实际上是未携带PPP协议的信息</p>
+<p>协议部分为0x0021时是IP数据报0xC021是PPP链路控制协议LCP</p>
+<p>为解决数据部分与标志字段的冲突，解决有两种方式。</p>
+<ul>
+<li>异步传输（连续字符）：字节填充<ul>
+<li>将0x7E 转换成 0x7D 0x5E</li>
+<li>将0x7D（即转义字符）转换成0x7D 0x5D</li>
+</ul>
+</li>
+<li>同步传输（连续比特）：0比特填充<ul>
+<li>每五个1填充一个0避免出现6个1（0x7F：01111110）</li>
+</ul>
+</li>
+</ul>
+<h4 id="局域网"><a href="#局域网" class="headerlink" title="局域网"></a>局域网</h4><p>特点：1.为一个单位所拥有的。2.地理范围和站点数目均有限制<br>以太网是局域网的一个标准<br>共享信道</p>
+<ol>
+<li>静态划分<ul>
+<li>如频分复用、波分复用等</li>
+</ul>
+</li>
+<li>动态划分<ul>
+<li>随机接入：所有用户随意发送信息。</li>
+<li>受控接入：不可随意发送信息，需要收到控制</li>
+</ul>
+</li>
+</ol>
+<p>为了使数据链路层更好适应局域网标准IEEE802将其拆分为两个子层：LLC逻辑链路控制子层 MAC媒体接入控制子层。后续采用另外一协议基本只剩下MAC协议<br>计算机与外界局域网通过通信适配器连接。上有RAM和ROM</p>
+<h4 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h4><p>帧间最小间隔：9.6μs<br>最短有效帧：64字节<br>为了通信简便以太网采取两种措施</p>
+<ol>
+<li>无连接。不可靠连接。同一时间只允许一台计算机发送数据=&gt;CSMA/CD（载波监听多点接入/碰撞）检测</li>
+<li>发送的数据都使用曼彻斯特编码</li>
+</ol>
+<p><strong>电磁波在电缆中的传播时间约为5μs</strong></p>
+<p>CSMA/CD：协议实质是载波监听和碰撞检测</p>
+<ol>
+<li>多点接入：多个设备接入</li>
+<li>载波监听：监听信道上是否有信号</li>
+<li>碰撞检测：检测是否有有碰撞（信号叠加会导致电压变化）。</li>
+</ol>
+<p>总线型=&gt;不可能是全双工=&gt;半双工通信/双向交替通信<br>争用期/碰撞窗口：2 * 总线端到端的传播时延（只有过了这段时间才可知道到底有没有碰撞）</p>
+<p>以太网在发生碰撞后使用截断二进制指数退避算法。在检测到碰撞后的一个随机时间后再次发送数据</p>
+<p>截断二进制退避算法：<br>r=random [ 0,1,2…..2<sup>k</sup> ]<br>k=min[重传次数,10]<br>等待时间t=r*争用期<br>重传16次未仍然不成功丢带该帧，向高层报告。</p>
+<p>使用集线器的星型以太网，逻辑上仍然是一个总线网，仍然使用CMSA/CD协议<br>集线器工作在物理层仅仅只做转发比特的工作<br><strong>单程端到端时延b，帧的发送时延c<br>a=b/c<br>极限信道利用率S=b/(c+b)=&gt;S=1/(1+a)</strong></p>
+<h4 id="MAC层"><a href="#MAC层" class="headerlink" title="MAC层"></a>MAC层</h4><p>硬件地址被称为物理地址、MAC地址（只存在MAC帧中）。固化在适配器的ROM中48位<br>前24位需向注册管理机构RA购买，名称为组织唯一标识符OUI，通常公司标识符<br>后24位由公司指派，被称为扩展标识符。<br>MAC地址的前24位不能用来标志一个公司，可能有好几个公司购买一个OUI。</p>
+<p>第一字节最低位：0为单个站地址。1位组地址，用来多播。<br>第一字节最低第二位：0全球管理。1本地管理。（G/L位，以太网不太会理会）。</p>
+<p>路由器每连接到一个网络都需要一个MAC地址。（同时连接两个网络时需要两个MAC地址和两个适配器）。</p>
+<p>适配器有过滤功能。当适配器每接收到一个MAC帧的时候就先用硬件检查MAC帧中的目的地址。如果是发往本站的帧，然后做其他处理，不然丢弃。“发往本站的帧”包括三种：</p>
+<ol>
+<li>单播帧（一对一），收到的帧的MAC地址与本站硬件相同</li>
+<li>广播（一对全部 ），发送给本局域网上的所有站点的帧</li>
+<li>多播（一对一多），发给本局域网上一部分站点的帧</li>
+</ol>
+<p>只有目的地址才可使用多播地址或者广播地址。<br>广播地址：48位全1<br>混杂方式：收到帧先收下来。可以用做窃听，或者监事分析以太网流量，以便找出提高网络性能的具体措施。嗅探器（Sniffer）。</p>
+<p>MAC帧构成：<br><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/%E8%AE%A1%E7%BD%91/MAC%E5%B8%A7.png" alt="假定为IP数据报"><br>假定为IP数据报</p>
+<p>以太网发送数据使用曼彻斯特编码，每一个码元都有一次电压变化。发送完最后一个码元之后发送方适配器无电压变化。接收方可以很容易找到帧结束地方。</p>
+<p>以太网最小有效帧为64字节=&gt;数据部分最小长度为46字节。<br>插入八字节：考试1/0交替，为了使接收的适配器在接收的时候调成时钟保证与数据保持位同步，后续两个连续1标识MAC帧的到来。<br>FCS使用CRC。<br>无效帧</p>
+<ol>
+<li>MAC帧不为整数个字节</li>
+<li>FCS查出数据有误</li>
+<li>MAC客户数据字段不在46-1500自己之间</li>
+</ol>
+<h4 id="拓展以太网"><a href="#拓展以太网" class="headerlink" title="拓展以太网"></a>拓展以太网</h4><h5 id="物理层拓展"><a href="#物理层拓展" class="headerlink" title="物理层拓展"></a>物理层拓展</h5><ol>
+<li>使用集线器，将多个碰撞域连接成一个更大的碰撞域（冲突域），前提是每个以太网（每系）的以太网技术相同。<h5 id="数据链路层扩展"><a href="#数据链路层扩展" class="headerlink" title="数据链路层扩展"></a>数据链路层扩展</h5>网桥：对收到的帧根据MAC的目的地址进行转发和过滤。<br>交换机：交换式集线器，工作在数据链路层<br>使用交换机扩展以太网<br>以太网交换机：</li>
+<li>全双工工作模式，具有并行性。相互通信的主机都是独占传输媒体，无碰撞的传输数据。</li>
+<li>是一个即插即用的设备，内部的帧交换表（地址表）是通过<strong>自学习算法</strong>自动地逐渐建立起来的。</li>
+<li>以太网交换机使用了专用的交换结构芯片，用硬件转发，其转发速率要比使用软件转发的网桥快很多。</li>
+<li>用户独享宽带，增加了总容量</li>
+</ol>
+<h4 id="虚拟局域网vlan"><a href="#虚拟局域网vlan" class="headerlink" title="虚拟局域网vlan"></a>虚拟局域网vlan</h4><p>由一些局域网网段构成的鱼物理位置无关的逻辑组。，这些网段具有某些共同的需求。每一个vlan帧中都有一个明确的标识，指明发送这个帧属于哪一个vlan。<br>优点：</p>
+<ol>
+<li>改善了性能</li>
+<li>简化了管理</li>
+<li>降低了成本</li>
+<li>增加了安全性</li>
+</ol>
+<p>划分方式：</p>
+<ol>
+<li>基于交换机端口</li>
+<li>基于MAC地址</li>
+<li>基于所使用的协议</li>
+<li>基于IP子网地址</li>
+<li>基于高层应用或服务</li>
+</ol>
+<p>vlan的以太网帧<br><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/%E8%AE%A1%E7%BD%91/%E8%AE%A1%E7%BD%919.png" alt=""></p>
+<h4 id="高速以太网"><a href="#高速以太网" class="headerlink" title="高速以太网"></a>高速以太网</h4><p>超过或者达到100Mb/s</p>
+<h5 id="100BASE-T"><a href="#100BASE-T" class="headerlink" title="100BASE-T"></a>100BASE-T</h5><ol>
+<li>100BASE-T 在双绞线上传送 100 Mbit/s 基带信号的星形拓扑以太网，仍使用 IEEE 802.3 的 CSMA/CD 协议。</li>
+<li>被称为快速以太网</li>
+<li>可在全双工方式下工作而无冲突发生。在全双工方式下工作时，不使用 CSMA/CD 协议。</li>
+<li>保持最短帧长不变，但将一个网段的最大电缆长度减小到 100 米。<br>帧间时间间隔从原来的 9.6 s 改为现在的 0.96 s 。 </li>
+</ol>
+<h5 id="吉比特以太网"><a href="#吉比特以太网" class="headerlink" title="吉比特以太网"></a>吉比特以太网</h5><p>使用全双工/半双工<br>全双工使用CMSA/CD协议，半双工不使用<br>为保持 64 字节最小帧长度，以及 100 米的网段的最大长度，吉比特以太网增加了两个功能：<br>载波延伸 (carrier extension)<br>分组突发 (packet bursting)<br>为保持信道利用率高，所以规定MAC最小512字节，不足512字节进行填充（载波延伸）<br>分组突发：第一个短帧使用载波延伸，后续短波不需要填充，但是有必要的帧间间隔。<br>全双工，不需要，载波延伸和分组突发。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/20/系统总线/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1819,135 +2096,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/26/Manacher‘sAlgorithm/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="无敌 .2.0">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一个不愿透露姓名的网友的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/26/Manacher‘sAlgorithm/" itemprop="url">马拉车算法 Manacher‘sAlgorithm  Author:tc</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-26T14:42:44+08:00">
-                2019-07-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>勤劳的tc又来了这回是马拉车。讲道理我应该先学kmp的。算了kmp之后在学。马拉车算法是求最大回文串的。受用面很窄。<br>ok接下来就是algorithm time<br>第一步是先将原本的字符串初始化。将每个字符用一个符号包裹，一般是#。<br>在这个时候字符串无论如何就都是偶数了。有什么用呢，举个例子。我们从下标为1开始。<br>&nbsp;#1#2#2#1#<br>看这里中心位置是 一个#号然后他的下标是index=5，然后这个字符串的半径是r=5，然后原字符串就是 1221，可以看出这回字符串是从0（index-r） 开始 后四位（r-1）。这里是他最神奇的地方。也让他简便了很多。<br>我们一般字符串都是从下标0开始的所以我们在他前面加一个字符串里没有的字符一般,我取的是$。<br>当然这个算法不只这么一点。首先他有一个数组p[i],记录他每个位置的回文串的大小，然后又一个变量mx记录回文串可以到达的最右边下标，他还有个变量id记录该字符串的下标。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这里在开始匹配前记录回文串半径最小值。  </span><br><span class="line">当```mx&gt;i</span><br></pre></td></tr></table></figure></p>
-<p>很容易我们可以得到<figure class="highlight k"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mx-id为半径的字符串是对称的，所以当p[k]的边界在id的边界之内，以下标为i的字符串的半径为p[k]的字符串一定是回文串。而当p[k] 大于id的边界的时候就不能保证对称性了，所以这里就取mx-i。  </span><br><span class="line">当mx &lt; i 这里我们就不能确定对称性了，所以直接取<span class="number">1.</span></span><br><span class="line">以下是代码:</span><br></pre></td></tr></table></figure></p>
-<p>#include<iostream></iostream></p>
-<p>#include<vector><br>using namespace std;<br>string name,lo;<br>string lon(){<br>    lo=”$”;<br>    int i=0;<br>    while(name.size()&gt;i){<br>        lo+=”#”;<br>        lo+=name[i];<br>        i++;<br>    }<br>    lo+=”#”;<br>    int si=0,index=0;<br>    vector<int> p(lo.size(),0);<br>    i=0;<br>    int mx=0;<br>    int id=0;<br>    int len=lo.size();<br>    for(i;i&lt;len;i++){<br>        p[i]= mx&gt;i? min(p[id*2-i],mx-i):1;<br>        while(lo[i-p[i]]==lo[i+p[i]]) p[i]++;<br>        if(mx&lt;i+p[i]){<br>            mx=i+p[i];<br>            id=i;<br>        }<br>        if(p[i]&gt;si){<br>            index=i;<br>            si=p[i];<br>        }<br>    }<br>    cout&lt;&lt;name&lt;&lt;” “&lt;&lt;endl;<br>    return name.substr((index-si)/2,si-1);<br>}</int></vector></p>
-<p>int main(){<br>    name=”11123123312123311”;<br>    cout&lt;&lt;lon();<br>    return 0;<br>}<br><code>`</code></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1993,7 +2146,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
