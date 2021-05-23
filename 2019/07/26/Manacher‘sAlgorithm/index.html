@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="勤劳的tc又来了这回是马拉车。讲道理我应该先学kmp的。算了kmp之后在学。马拉车算法是求最大回文串的。受用面很窄。ok接下来就是algorithm time第一步是先将原本的字符串初始化。将每个字符用一个符号包裹，一般是#。在这个时候字符串无论如何就都是偶数了。有什么用呢，举个例子。我们从下标为1开始。&amp;nbsp;#1#2#2#1#看这里中心位置是 一个#号然后他的下标是index=5，然后这个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="马拉车算法 Manacher‘sAlgorithm  Author:tc">
+<meta property="og:url" content="http://yoursite.com/2019/07/26/Manacher‘sAlgorithm/index.html">
+<meta property="og:site_name" content="一个不愿透露姓名的网友的博客">
+<meta property="og:description" content="勤劳的tc又来了这回是马拉车。讲道理我应该先学kmp的。算了kmp之后在学。马拉车算法是求最大回文串的。受用面很窄。ok接下来就是algorithm time第一步是先将原本的字符串初始化。将每个字符用一个符号包裹，一般是#。在这个时候字符串无论如何就都是偶数了。有什么用呢，举个例子。我们从下标为1开始。&amp;nbsp;#1#2#2#1#看这里中心位置是 一个#号然后他的下标是index=5，然后这个">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-26T06:42:44.863Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="马拉车算法 Manacher‘sAlgorithm  Author:tc">
+<meta name="twitter:description" content="勤劳的tc又来了这回是马拉车。讲道理我应该先学kmp的。算了kmp之后在学。马拉车算法是求最大回文串的。受用面很窄。ok接下来就是algorithm time第一步是先将原本的字符串初始化。将每个字符用一个符号包裹，一般是#。在这个时候字符串无论如何就都是偶数了。有什么用呢，举个例子。我们从下标为1开始。&amp;nbsp;#1#2#2#1#看这里中心位置是 一个#号然后他的下标是index=5，然后这个">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/26/Manacher‘sAlgorithm/">
+
+
+
+
+
+  <title>马拉车算法 Manacher‘sAlgorithm  Author:tc | 一个不愿透露姓名的网友的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一个不愿透露姓名的网友的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">真香</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/26/Manacher‘sAlgorithm/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="无敌 .2.0">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个不愿透露姓名的网友的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">马拉车算法 Manacher‘sAlgorithm  Author:tc</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-26T14:42:44+08:00">
+                2019-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>勤劳的tc又来了这回是马拉车。讲道理我应该先学kmp的。算了kmp之后在学。马拉车算法是求最大回文串的。受用面很窄。<br>ok接下来就是algorithm time<br>第一步是先将原本的字符串初始化。将每个字符用一个符号包裹，一般是#。<br>在这个时候字符串无论如何就都是偶数了。有什么用呢，举个例子。我们从下标为1开始。<br>&nbsp;#1#2#2#1#<br>看这里中心位置是 一个#号然后他的下标是index=5，然后这个字符串的半径是r=5，然后原字符串就是 1221，可以看出这回字符串是从0（index-r） 开始 后四位（r-1）。这里是他最神奇的地方。也让他简便了很多。<br>我们一般字符串都是从下标0开始的所以我们在他前面加一个字符串里没有的字符一般,我取的是$。<br>当然这个算法不只这么一点。首先他有一个数组p[i],记录他每个位置的回文串的大小，然后又一个变量mx记录回文串可以到达的最右边下标，他还有个变量id记录该字符串的下标。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这里在开始匹配前记录回文串半径最小值。  </span><br><span class="line">当```mx&gt;i</span><br></pre></td></tr></table></figure></p>
+<p>很容易我们可以得到<figure class="highlight k"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mx-id为半径的字符串是对称的，所以当p[k]的边界在id的边界之内，以下标为i的字符串的半径为p[k]的字符串一定是回文串。而当p[k] 大于id的边界的时候就不能保证对称性了，所以这里就取mx-i。  </span><br><span class="line">当mx &lt; i 这里我们就不能确定对称性了，所以直接取<span class="number">1.</span></span><br><span class="line">以下是代码:</span><br></pre></td></tr></table></figure></p>
+<p>#include<iostream></iostream></p>
+<p>#include<vector><br>using namespace std;<br>string name,lo;<br>string lon(){<br>    lo=”$”;<br>    int i=0;<br>    while(name.size()&gt;i){<br>        lo+=”#”;<br>        lo+=name[i];<br>        i++;<br>    }<br>    lo+=”#”;<br>    int si=0,index=0;<br>    vector<int> p(lo.size(),0);<br>    i=0;<br>    int mx=0;<br>    int id=0;<br>    int len=lo.size();<br>    for(i;i&lt;len;i++){<br>        p[i]= mx&gt;i? min(p[id*2-i],mx-i):1;<br>        while(lo[i-p[i]]==lo[i+p[i]]) p[i]++;<br>        if(mx&lt;i+p[i]){<br>            mx=i+p[i];<br>            id=i;<br>        }<br>        if(p[i]&gt;si){<br>            index=i;<br>            si=p[i];<br>        }<br>    }<br>    cout&lt;&lt;name&lt;&lt;” “&lt;&lt;endl;<br>    return name.substr((index-si)/2,si-1);<br>}</int></vector></p>
+<p>int main(){<br>    name=”11123123312123311”;<br>    cout&lt;&lt;lon();<br>    return 0;<br>}<br><code>`</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/11/offsetof/" rel="next" title="offsetof 宏定义">
+                <i class="fa fa-chevron-left"></i> offsetof 宏定义
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/10/2019暑假答辩/" rel="prev" title="吴天赐2019暑假答辩/周任务上传下载">
+                吴天赐2019暑假答辩/周任务上传下载 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">无敌 .2.0</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">无敌 .2.0</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
