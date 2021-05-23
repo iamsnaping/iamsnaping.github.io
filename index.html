@@ -229,6 +229,131 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/23/多重背包优化/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="无敌 .2.0">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个不愿透露姓名的网友的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/05/23/多重背包优化/" itemprop="url">多重背包</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-23T11:15:04+08:00">
+                2021-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://www.acwing.com/problem/content/5/" target="_blank" rel="noopener">多重背包</a></p>
+<p>对于没有数据小的时候我们可以在完全背包的问题上加一重循环来判断取多少个物品,但是当数据量太大时就会超时。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FAST    ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ull;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; P;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e6</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> ll mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> PI=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> E=<span class="number">2.718281828459045</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> w[N];</span><br><span class="line"><span class="keyword">int</span> v[N];</span><br><span class="line"><span class="keyword">int</span> s[N];</span><br><span class="line"><span class="keyword">int</span> dp[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,t;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;t);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;w[i],&amp;v[i],&amp;s[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=t;j&gt;=w[i];j--)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;=s[i];k++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(k*w[i]&gt;j) <span class="keyword">break</span>;</span><br><span class="line">                dp[j]=max(dp[j],dp[j-k*w[i]]+k*v[i]);</span><br><span class="line">                ans=max(dp[j],ans);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,dp[t]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们考虑多重背包的另外一种解法。将s[i]个物品拆成s[i]个一个物品放入数组中,这时题目转换成了01背包问题。在这个基础上我们可以做优化。<br>我们可以在拆分物品的时候做优化,将s[i]个物品不拆分为s[i]个一个物品而是拆分成floor(log<sub>2</sub>(s[i]))+1个数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">若我们想拆分 7</span><br><span class="line">则我们可以拆成1、2、4份这样可以组成 1-7中任意的数</span><br><span class="line">同理 拆分10 </span><br><span class="line">可以拆成 1、2、4、10-7 也就是 1、2、4、3</span><br></pre></td></tr></table></figure>
+<p>拆分过后将数放入数组中,转换成01完全背包问题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FAST    ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ull;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; P;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e6</span>+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> ll mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> PI=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> E=<span class="number">2.718281828459045</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> s,w,v;</span><br><span class="line"><span class="keyword">int</span> dp[N];</span><br><span class="line">P pa[N*<span class="number">3</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,t;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;t);</span><br><span class="line">    <span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;w,&amp;v,&amp;s);</span><br><span class="line">        <span class="keyword">int</span> k=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(; k&lt;=s; k*=<span class="number">2</span>) &#123;</span><br><span class="line">            pa[cnt++]= &#123;w*k,v*k&#125;;</span><br><span class="line">            s-=k;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s&gt;<span class="number">0</span>) </span><br><span class="line">            pa[cnt++]= &#123;w*s,v*s&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;cnt; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=t; j&gt;=pa[i].first; j--) &#123;</span><br><span class="line">            dp[j]=max(dp[j],dp[j-pa[i].first]+pa[i].second);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,dp[t]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/23/binary_search/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1976,127 +2101,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/24/Untitled-1/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="无敌 .2.0">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一个不愿透露姓名的网友的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/24/Untitled-1/" itemprop="url">树形dp&&一些其他的很杂的东西</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-24T22:07:56+08:00">
-                2019-09-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Oh，Oh勤劳的tc来了 。。<br>讲道理 很久没写了，也并不是很勤劳（小声bb）先是树形dp<br>就像他的名字这个dp是对像树一样的数据进行dp一般都是图，毕竟图你把每个点连起来就像树一样？！<br>说是dp其实我觉得像dfs+dp。<br>因为他的数据和树一样，所以普通的dp是完成不了的。首先他的一个节点上有很多个儿子结点，儿子节点上又有很多结点。所以这里用了dfs从他的叶子结点dp从他的叶子结点就开始判断最佳路径。<br>下面是题目<br><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1011" target="_blank" rel="noopener">hdu 1011</a><br>首先他一个士兵可以打败20个怪兽意思，但是即使只有一个怪兽也要用1个士兵。所以这里判断士兵用量就是（bugs+19）/20 。然后dp的部分，先用一个数组二维的int型value[u][v]来记录他的路径。 u就是当前所在层数，然后v就是当前层数所有的士兵数，然后他是从后往前dp的所以他的dp转移方程就是<br>value[u][v]=max(value[u][v],value[u][v-j]+value[next][j]);这里的next就是和当前节点相连的一个节点然后他在第n层的最大brain获取量就是第u层留下v-j的brain获取量和next层花费j士兵是获取的brain量<br>code：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;unordered_map&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#define fastc cin.tie(NULL);</span><br><span class="line">#define fasto cout.tie(NULL);</span><br><span class="line">#define fasts ios::sync_with_stdio(false);</span><br><span class="line">#define END return 0;</span><br><span class="line">#include&lt;iomanip&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">//char num[1000];</span><br><span class="line"></span><br><span class="line">int value[101][101];//记录值进行dp</span><br><span class="line">int visit[101];//看是否访问过，避免重复查找。</span><br><span class="line">int rec[101][101];//记录地图</span><br><span class="line">typedef pair&lt;int,int&gt; P;//储存bugs和brains</span><br><span class="line">P pa[101];</span><br><span class="line"></span><br><span class="line">int n,m;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dp(int u) &#123;</span><br><span class="line">	visit[u]=1;</span><br><span class="line">	int cost=(pa[u].first+19)/20;</span><br><span class="line">	for(int i=m; i&gt;=cost; i--) &#123;</span><br><span class="line">		value[u][i]=pa[u].second;//在第u层花费了cost个士兵都可以获得所有的brain</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=1; i&lt;=n; i++) &#123;</span><br><span class="line">		if(rec[u][i] &amp;&amp; !visit[i]) &#123;</span><br><span class="line">			dp(i);</span><br><span class="line">			for(int j=m; j&gt;=cost; j--) &#123;</span><br><span class="line">				int rest=j-cost;</span><br><span class="line">				for(int k=1; k&lt;=rest; k++) &#123;</span><br><span class="line">					value[u][j]=max(value[u][j],value[i][k]+value[u][j-k]);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void prin() &#123;</span><br><span class="line">	for(int i=0; i&lt;=n; i++) &#123;</span><br><span class="line">		for(int j=0; j&lt;=m; j++) &#123;</span><br><span class="line">			cout&lt;&lt;value[i][j]&lt;&lt;&quot; &quot;;</span><br><span class="line">		&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	//cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	fastc fasto fasts</span><br><span class="line">	while(cin&gt;&gt;n&gt;&gt;m) &#123;</span><br><span class="line">		if(n==m&amp;&amp;n==-1) break;</span><br><span class="line">		memset(value,0,sizeof(value));</span><br><span class="line">		memset(visit,0,sizeof(visit));</span><br><span class="line">		memset(pa,0,sizeof(pa));</span><br><span class="line">		memset(rec,0,sizeof(rec));</span><br><span class="line">		int i=1;</span><br><span class="line">		for(i; i&lt;=n; i++) &#123;</span><br><span class="line">			cin&gt;&gt;pa[i].first&gt;&gt;pa[i].second;</span><br><span class="line">		&#125;</span><br><span class="line">		int one,two;</span><br><span class="line">		for(i=1; i&lt;n; i++) &#123;</span><br><span class="line">			cin&gt;&gt;one&gt;&gt;two;</span><br><span class="line">			rec[one][two]=1;</span><br><span class="line">			rec[two][one]=1;</span><br><span class="line">		&#125;</span><br><span class="line">		dp(1);</span><br><span class="line">		prin();</span><br><span class="line">		cout&lt;&lt;value[1][m]&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	END</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>题目：<br>dfs剪枝<br><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1010" target="_blank" rel="noopener">hdu1010</a><br>这题是已经规定了步数<br>|0|1|0|1|0|1|<br>–|:–:|–:|–:|–:|–:|<br>|1|0|1|0|1|0|<br>|0|1|0|1|0|1|<br>|1|0|1|0|1|0|<br>|0|1|0|1|0|1|<br>|1|0|1|0|1|0|<br>|0|1|0|1|0|1|<br>|1|0|1|0|1|0|<br>|0|1|0|1|0|1|<br>|1|0|1|0|1|0|<br>|0|1|0|1|0|1|<br>可以知道从1走到0的步数一定是奇数<br>这里是最重要的一个剪枝，只有当起点的横纵坐标的奇偶性相同时，步数必须是奇数，反之则是偶数。<br>数论小知识<br>题目：<br><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1013" target="_blank" rel="noopener">hdu1013</a><br>Digtial Roots=(sum-1)%9+1 </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2147,7 +2151,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
