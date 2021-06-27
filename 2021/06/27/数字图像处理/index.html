@@ -1,37 +1,838 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="绪论一幅图像可以定义为一个二维函数f(x,y),其中x,y是空间坐标,而在任何一对空间坐标(x,y)处的幅值f称为图像在该点的强度、灰度。当x,y和灰度值f是有限的离散数值时,我们称该图像为数字图像。&amp;nbsp;数字图像：数字图像是由有限数量单元的元素组成,每个元素都有一个特定的位置或者幅值。这些元素称为图画元素、图像元素、像素。&amp;nbsp;数字图像处理：借助于数字计算机来处理图像。&amp;nbsp;低">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字图像处理">
+<meta property="og:url" content="http://yoursite.com/2021/06/27/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="一个不愿透露姓名的网友的博客">
+<meta property="og:description" content="绪论一幅图像可以定义为一个二维函数f(x,y),其中x,y是空间坐标,而在任何一对空间坐标(x,y)处的幅值f称为图像在该点的强度、灰度。当x,y和灰度值f是有限的离散数值时,我们称该图像为数字图像。&amp;nbsp;数字图像：数字图像是由有限数量单元的元素组成,每个元素都有一个特定的位置或者幅值。这些元素称为图画元素、图像元素、像素。&amp;nbsp;数字图像处理：借助于数字计算机来处理图像。&amp;nbsp;低">
+<meta property="og:locale">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E9%82%BB%E5%9F%9F.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E7%81%B0%E5%BA%A6%E5%8F%8D%E8%BD%AC.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%AF%B9%E6%95%B0%E5%8F%98%E6%8D%A2.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%AF%B9%E6%95%B0%E5%8F%98%E6%8D%A22.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%BD%E9%A9%AC%E5%8F%98%E6%8D%A2.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%BD%E9%A9%AC%E5%8F%98%E6%8D%A22.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%AF%B9%E6%AF%94%E5%BA%A6%E6%8B%89%E4%BC%B8.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E7%81%B0%E5%BA%A6%E7%BA%A7%E5%88%86%E5%B1%82.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%AF%94%E7%89%B9%E4%BD%8D%E5%88%86%E5%B1%82.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%AF%94%E7%89%B9%E4%BD%8D%E5%88%86%E5%B1%822.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/laplas.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/sobel.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E7%81%B0%E5%BA%A6%E5%88%86%E5%B1%82.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E7%81%B0%E5%BA%A6%E5%88%86%E5%B1%822.png">
+<meta property="og:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E7%81%B0%E5%BA%A6%E5%88%86%E5%B1%823.png">
+<meta property="article:published_time" content="2021-06-27T02:05:40.532Z">
+<meta property="article:modified_time" content="2021-06-27T07:36:35.787Z">
+<meta property="article:author" content="无敌 .2.0">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E9%82%BB%E5%9F%9F.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/06/27/数字图像处理/"/>
+
+
+
+
+
+  <title>数字图像处理 | 一个不愿透露姓名的网友的博客</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一个不愿透露姓名的网友的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">真香</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/27/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个不愿透露姓名的网友的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数字图像处理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-27T10:05:40+08:00">
+                2021-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>一幅图像可以定义为一个二维函数f(x,y),其中x,y是空间坐标,而在任何一对空间坐标(x,y)处的幅值f称为图像在该点的<strong>强度</strong>、<strong>灰度</strong>。当x,y和灰度值f是有限的离散数值时,我们称该图像为<strong>数字图像</strong>。<br>&nbsp;<br><strong>数字图像</strong>：数字图像是由有限数量单元的元素组成,每个元素都有一个特定的位置或者幅值。这些元素称为<strong>图画元素</strong>、<strong>图像元素</strong>、<strong>像素</strong>。<br>&nbsp;<br><strong>数字图像处理</strong>：借助于数字计算机来处理图像。<br>&nbsp;<br><strong>低级处理</strong>：涉及初级操作,如降低噪声的图像预处理、对比图增强和图像锐化。低级处理以输入、输出都是图像为特征。<br>&nbsp;<br><strong>中级处理</strong>：涉及诸多任务,如分割(把一幅图像分割为不同区域或则目标),减少这些目标物的描述,以使其更适合计算机处理以及对不同目标的的分类(识别)。中级处理以输入为图像但是输出为从这些图像中提取的特征(边缘、轮廓及各类标识)为特征。<br>&nbsp;<br><strong>高级处理</strong>：涉及”理解”已识别目标的总体,就像图像分析一般,以及连续统一体的远端执行与视觉相关的功能。<br>&nbsp;</p>
+<h2 id="数字图像处理基础"><a href="#数字图像处理基础" class="headerlink" title="数字图像处理基础"></a>数字图像处理基础</h2><p><strong>眼睛</strong>：三层膜包括。角膜、巩膜外层 脉络膜 视网膜。<br>&nbsp;<br><strong>亮度适应级别</strong>：对于任何条件,视觉系统当前灵敏度级别称为亮度适应级别。<strong>原因</strong>：视觉系统不能同时在一个范围内工作被称为<strong>亮度适应</strong>。<br>&nbsp;<br>对于不同的强度的边界区域会出现<strong>下冲</strong>,<strong>上冲</strong>现象。<br>&nbsp;<br>没有颜色的光被称为<strong>单色光</strong>,<strong>无色光</strong>。唯一属性<strong>强度</strong>或<strong>大小</strong>。单色光的强度从黑色到灰色变化,最后到白色。<strong>灰度级</strong>用来描述单色光的强度。<br>&nbsp;<br><strong>灰度级</strong>：从黑色(0)到白色(L-1)的单色光的度量范围。<br>&nbsp;<br><strong>灰度图像</strong>：单色光图像。<br>&nbsp;<br>三个基本量描述彩色光源的质量：<strong>发光强度</strong>(从光流出的能量总量用瓦特W来度量)、<strong>光通量</strong>(流明数lm度量。给出了观察者从光源感受到能量)、<strong>亮度</strong>(主观描绘子,具体体现了强度的无色概念)。<br>&nbsp;<br>一副图像的x和y坐标及幅值都可能是连续的。为将他们转换为数字形式,必须对坐标和幅值进行取样操作。对坐标进行数字化称为取<strong>取样</strong>。对幅值数字化称为<strong>量化</strong>。<br>&nbsp;<br>由一幅图像的坐标张成的实平面部分称为<strong>空间域</strong>。x,y被称为空间变量或者空间坐标。<br>&nbsp;<br>处于储存和量化硬件考虑,灰度级数通常取为<strong>2的整数次幂</strong>。<br>&nbsp;<br><strong>动态范围</strong>：灰度跨越的值域非正式的称为动态范围。系统的最大可度量灰度(取决于饱和度。饱和度：超过这个值就要被剪掉的最高值)与最小可检测灰度(取决于噪声)之比。<br>&nbsp;<br><strong>灰度分辨率</strong>：灰度级中可分辨的最小变化。</p>
+<h3 id="内插"><a href="#内插" class="headerlink" title="内插"></a>内插</h3><p><strong>内插</strong>：用已知数据来估计未知位置的数值的处理。</p>
+<ol>
+<li>最邻近插值</li>
+<li>双线性插值</li>
+<li>双三次插值</li>
+</ol>
+<p><strong>双线性插值</strong>：$v(x,y)=ax+by+cxy+d$使用四个点为基准点。<br><strong>双三次插值</strong>：$v(x,y)$ = $\sum_{i=0}^3\sum_{j=0}^3a_{ij}x^iy^j$使用16个点为基准点。</p>
+<h3 id="邻接-amp-amp-邻域"><a href="#邻接-amp-amp-邻域" class="headerlink" title="邻接&amp;&amp;邻域"></a>邻接&amp;&amp;邻域</h3><ol>
+<li>四邻域：$(x+1,y), (x,y+1), (x-1,y), (x,y-1)被称为N_4(p)$</li>
+<li>D邻域：$(x+1,y+1), (x+1,y-1) ,(x-1,y+1) ,(x-1,y-1)被称为N_D(p)$</li>
+<li>8邻域：$包含N_4(p)和N_D(p)被称为N_8(p)$</li>
+<li>m邻接/混合邻接：$设p在N_4(q)或者p在N_D(q)中(p,q在v中),且N_4(p) \bigcap N_D(q) \bigcap v = \emptyset 称v中的数值p,q是m邻接的$<br>前两种邻域称为4邻接,8领域称为8邻接。<br><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E9%82%BB%E5%9F%9F.png" alt="邻接" title="邻接"><br>&nbsp;</li>
+</ol>
+<h3 id="连通性、边界、区域"><a href="#连通性、边界、区域" class="headerlink" title="连通性、边界、区域"></a>连通性、边界、区域</h3><p>设$S$为一个像素子集。如果$S$的全部像素之间存在一个通路则称两个像素$p,q$是连通的。对于$S$中任何像素$p,S$中连通到该像素的像素集称为$S$的<strong>连通分量</strong>。如果$S$中只有一个连通分量则称,集合$S$为<strong>连通集</strong>。<br>&nbsp;<br>如果$R$是图像的一个像素子集,且为连通集则称$R$为一个<strong>区域</strong>。两个区域将他们联合成一个连通集则称他们为<strong>邻接区域</strong>。不邻接区域称为<strong>不邻接区域</strong>。<br>&nbsp;<br>设一幅图像中有$K$个不连接的区域,即$R_k,k=1,2,3…..,K$且他们都不接触图像的边界。令$R_u$为$K$个区域的并集,$(R_u)^c$为补集。则我们称$R_u$为图像前景。$(R_u)^c$为图像背景。<br>&nbsp;<br>区域$R$的<strong>边界</strong>：与$R$的补集用的点邻接。一个区域及其背景的邻接要根据<strong>8连通</strong>定义。<strong>此为内边界</strong>。</p>
+<h3 id="距离"><a href="#距离" class="headerlink" title="距离"></a>距离</h3><p><strong>欧式距离</strong>：$D_e(p,q)=[(x-s)^2+(y-t)^2]^{1/2}$<br><strong>城市区间距离$D_4$距离</strong>：$D_4=|x-s|-|y-t|$<br><strong>$D_8$距离棋盘距离</strong>：$D_8(p,q)=max(||x-s,|y-t|)$<br><strong>$D_m$</strong>：最短m通路距离。</p>
+<h3 id="工具介绍"><a href="#工具介绍" class="headerlink" title="工具介绍"></a>工具介绍</h3><ol>
+<li>针对降噪的带噪音图像的相加</li>
+<li>增强差别图片的相减</li>
+<li>使用图像相除或者相乘来校正阴影</li>
+</ol>
+<h2 id="灰度变换和空间滤波"><a href="#灰度变换和空间滤波" class="headerlink" title="灰度变换和空间滤波"></a>灰度变换和空间滤波</h2><p><strong>空间域</strong>：空间域是包含图像像素的简单平面。<br><strong>空间域技术</strong>：直接操作图像的像素。<br><strong>灰度变换</strong>：指根据某种目标条件按一定变换关系逐点改变源图像中每一个像素灰度值的方法。目的是为了改善画质，使图像的显示效果更加清晰。</p>
+<h3 id="滤波"><a href="#滤波" class="headerlink" title="滤波"></a>滤波</h3><p><strong>空间滤波</strong><br>考虑一个式子<br>$g(x,y)=T[f(x,y)]$<br>其中$f(x,y)$是输入图像。$g(x,y)$是处理后的图像。$T$是在点$(x,y)$处领域上定义的关于$f$的一种算子。</p>
+<ol>
+<li>设有一个算子$T$ </li>
+<li>邻域原点从一个像素到另一个像素移动。</li>
+<li>对领域中的像素应用算子$T$,并在该位置输出</li>
+<li>对于任意指定位置$(x,y)$,输出图像$g$在这些坐标出的值,等于对$f$中以$(x,y)$为原点的邻域应用算子$T$的结果。</li>
+<li>当该邻域的原点位于图像的边界上时,部分领域将位于图像外部,此时不是用$T$做指定的计算时忽略外侧邻点就是使用0或者其他的指定灰度值进行填充。</li>
+</ol>
+<p><strong>以上的操作为空间滤波,其中邻域与预定义的操作一起被称为空间滤波器。</strong></p>
+<h3 id="基本的灰度变换函数"><a href="#基本的灰度变换函数" class="headerlink" title="基本的灰度变换函数"></a>基本的灰度变换函数</h3><h4 id="图像反转"><a href="#图像反转" class="headerlink" title="图像反转"></a>图像反转</h4><p>将得到的图像的灰度图反转。<br>得到的灰度级范围$[0,L-1]$。反转公式$s=L-l-r$。<br><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E7%81%B0%E5%BA%A6%E5%8F%8D%E8%BD%AC.png" alt="灰度图反转" title="灰度图反转"></p>
+<h4 id="对数变换"><a href="#对数变换" class="headerlink" title="对数变换"></a>对数变换</h4><p>变换公式为$s=clog(l+r)$。其中$c$为常数,假设$r\geq0$。变换输入的$r$可达到输出的$s$的图像。<br><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%AF%B9%E6%95%B0%E5%8F%98%E6%8D%A2.png" alt="对数变换" title="对数变换"><br><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%AF%B9%E6%95%B0%E5%8F%98%E6%8D%A22.png" alt="对数变换图形" title="对数变换图形"></p>
+<p>对于对数变换来说。我们可以从图中看出,对数变换将输入范围内较窄的灰度值映射到到较宽的的灰度值,或者将范围较宽的灰度值映射到范围较窄的灰度值。反对数与此相反。</p>
+<h4 id="幂律-伽马-变换"><a href="#幂律-伽马-变换" class="headerlink" title="幂律(伽马)变换"></a>幂律(伽马)变换</h4><p>考虑公式。<br>$s=cr^\gamma$。其中$r,\gamma$为常数,式子可以写成$s=c(r+\varepsilon)^\gamma$。但是其中的$\varepsilon$可以忽略不记。对于不同的$r和c$可以得到以下图像。<br><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%BD%E9%A9%AC%E5%8F%98%E6%8D%A2.png" alt="伽马变换" title="伽马变换"><br>和对数变换不同的是随着$\gamma$的变换我们可以得到一族可能的变换曲线,可以看到当$c,r$不变时,$\gamma 和 \gamma&lt;1 $ 生成的曲线完全相反。<br>$c=\gamma=1$时变成了恒等变换。</p>
+<p>用于图像获取、打印和显示各种设备根据幂律来产生响应。用于校正这些幂律现象的处理方式被称为伽马校正。<br><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E4%BC%BD%E9%A9%AC%E5%8F%98%E6%8D%A22.png" alt="伽马校正" title="伽马校正"></p>
+<p>伽马校正不会改变图片的亮度但是会改变彩色图片中的红、绿、蓝的比率。</p>
+<h4 id="分段线性变换函数"><a href="#分段线性变换函数" class="headerlink" title="分段线性变换函数"></a>分段线性变换函数</h4><h5 id="对比度拉伸动"><a href="#对比度拉伸动" class="headerlink" title="对比度拉伸动"></a>对比度拉伸动</h5><p>低对比度图像由于照明不足、成像传感器态范围太小、图像获取过程中镜头光圈设置错误引起。对比度拉伸是<strong>扩展图像灰度级动态范围的处理</strong>,因此可以跨越记录介质和显示装置的全部灰度范围。<br><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%AF%B9%E6%AF%94%E5%BA%A6%E6%8B%89%E4%BC%B8.png" alt="对比度拉伸" title="对比度拉伸"></p>
+<h5 id="灰度级分层"><a href="#灰度级分层" class="headerlink" title="灰度级分层"></a>灰度级分层</h5><p>将感兴趣的灰度范围突出出来。</p>
+<ol>
+<li>使用二值函数,将感兴趣设为一个值其他的设为另外一个值</li>
+<li>将感兴趣的变亮或者变暗。其他不变。<br><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E7%81%B0%E5%BA%A6%E7%BA%A7%E5%88%86%E5%B1%82.png" alt="灰度分层函数" title="灰度分层函数"><h5 id="比特位分层"><a href="#比特位分层" class="headerlink" title="比特位分层"></a>比特位分层</h5>例如在256灰度图中(灰度级范围$[0-255]$)每个像素灰度由8个比特组成。<br>用于突出特定比特来突出图像的外观。<br><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%AF%94%E7%89%B9%E4%BD%8D%E5%88%86%E5%B1%82.png" alt="比特分层函数" title="比特分层函数"></li>
+</ol>
+<p><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E6%AF%94%E7%89%B9%E4%BD%8D%E5%88%86%E5%B1%822.png" alt="比特分层实例" title="比特分层实例"></p>
+<h3 id="直方图处理"><a href="#直方图处理" class="headerlink" title="直方图处理"></a>直方图处理</h3><h4 id="直方图均衡"><a href="#直方图均衡" class="headerlink" title="直方图均衡"></a>直方图均衡</h4><p>是一种增强图像对比度的方法,其主要思想是将一副图像的直方图分布变成近似均匀分布,从而增强图像的对比度。直方图均衡化是输入图像中各灰度级别通过式子映射到输出图像中，该灰度级别对应的Y值不变。通过这样处理能达到图像中灰度级别均衡分布的目的</p>
+<h4 id="直方图匹配"><a href="#直方图匹配" class="headerlink" title="直方图匹配"></a>直方图匹配</h4><p>又称直方图规定化。是指将一幅图像的直方图变成规定形状的直方图而进行的图像增强方法。有时我们希望处理后的图像具有规定的直方图形状可能更有用。这种于产生处理后有特殊直方图的方法称为直方图匹配。</p>
+<h3 id="空间滤波基础"><a href="#空间滤波基础" class="headerlink" title="空间滤波基础"></a>空间滤波基础</h3><h4 id="空间滤波机理"><a href="#空间滤波机理" class="headerlink" title="空间滤波机理"></a>空间滤波机理</h4><p><strong>空间滤波器组成</strong></p>
+<ol>
+<li>一个邻域(通常是一个小矩形)</li>
+<li>对该邻域所包围的图像像素执行的预定义操作组成。</li>
+</ol>
+<p>滤波产生新的像素,新的像素坐标等于邻域中心的坐标,像素的值是滤波操作的结果。</p>
+<p>如果滤波器在图像像素上执行的是线性操作则该滤波器被称为<strong>线性滤波器</strong>。否则为<strong>非线性滤波器</strong>。</p>
+<p><strong>相关</strong>：滤波器模板移过图像并计算每个位置乘积之和的处理,是滤波器位移的函数。<br><strong>卷积</strong>：与相关相似,但是将滤波模板反转了$180^。$<br><strong>离散单位冲激</strong>：包含单个1而其余都是0的函数称为离散单位冲激。<br>某个函数与单位冲激相关,则会在改冲激位置产生该函数的一个翻转。<br><strong>卷积的一个基本特性</strong>：某个函数与某个离散单位冲激卷积,得到该函数在该冲激出的一个副本。<br><strong>线性滤波</strong>：实现乘积求和操作。<br>二维高斯函数具有钟型,标准差控制钟的”紧度”。</p>
+<h4 id="平滑空间滤波器"><a href="#平滑空间滤波器" class="headerlink" title="平滑空间滤波器"></a>平滑空间滤波器</h4><h5 id="平滑线性滤波器"><a href="#平滑线性滤波器" class="headerlink" title="平滑线性滤波器"></a>平滑线性滤波器</h5><p>输出(响应)：包含在滤波器模板邻域内的像素的简单平均值也被称为<strong>均值滤波器</strong>。可以把他归为<strong>低通滤波器</strong>。<br>所有系数都相等的空间均值滤波器被称为<strong>盒装滤波器</strong>。</p>
+<h5 id="统计排序滤波器-非线性"><a href="#统计排序滤波器-非线性" class="headerlink" title="统计排序滤波器(非线性)"></a>统计排序滤波器(非线性)</h5><p>是一种<strong>非线性空间滤波器</strong>。</p>
+<p><strong>中值滤波器</strong>：处理椒盐噪声很有效。使拥有不同的灰度的点看起来更接近他的相邻点。<br>其他：最大值滤波器、最小值滤波器等。</p>
+<h4 id="锐化空间滤波器"><a href="#锐化空间滤波器" class="headerlink" title="锐化空间滤波器"></a>锐化空间滤波器</h4><p><strong>主要目的</strong>：突出灰度的过度部分也就是细节。<br>一维函数$f(x)$的一维积分基本定义是差。<br>$\frac{\partial f}{\partial x}=f(x+1)-f(x)$<br>二阶微积分定义为差分也就是细节。<br>$\frac{\partial^2 f}{\partial x^2}=f(x+1)+f(x-1)-2f(x)$<br>扩展到x,y方向上。<br><strong>x方向上</strong><br>$\frac{\partial^2 f}{\partial x^2}=f(x+1,y)+f(x-1,y)-2f(x,y)$<br><strong>y方向上</strong><br>$\frac{\partial^2 f}{\partial x^2}=f(x,y+1)+f(x,y-1)-2f(x,y)$</p>
+<h5 id="拉普拉斯算子"><a href="#拉普拉斯算子" class="headerlink" title="拉普拉斯算子"></a>拉普拉斯算子</h5><p><strong>定义</strong><br>$\nabla ^2f(x,y)=\frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2}$<br><strong>公式</strong><br>$\nabla^2 f(x,y)=f(x+1,y)+f(x-1,y)+f(x,y+1)+f(x,y-1)+4f(x,y)$</p>
+<p><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/laplas.png" alt="laplas" title="laplas"></p>
+<h5 id="非锐化掩蔽和提高滤波"><a href="#非锐化掩蔽和提高滤波" class="headerlink" title="非锐化掩蔽和提高滤波"></a>非锐化掩蔽和提高滤波</h5><p>印刷业和出版业使用。</p>
+<ol>
+<li>模糊原图</li>
+<li>从原图中减去模糊图像得到模板</li>
+<li>将模板加到原图上</li>
+</ol>
+<p>设$\overline{f}(x,y)$为模糊图像则我们得到模板$g_{mask}(x,y)$则<br>$g_{mask}(x,y)=f(x,y)-\overline{f}(x,y)$。然后我们在原图上加一个权重部分<br>$g(x,y) = f(x,y) + k<em>g_{mask}(x,y)$。<br>当$k&gt;1$称该处理为<strong>提高升滤波</strong>。当$k&lt;1$不强调非锐化模板的贡献。<br>$k=1$则称为<em>*非锐化遮掩</em></em>。</p>
+<h4 id="使用一阶微分锐化-非线性-图像——梯度"><a href="#使用一阶微分锐化-非线性-图像——梯度" class="headerlink" title="使用一阶微分锐化(非线性)图像——梯度"></a>使用一阶微分锐化(非线性)图像——梯度</h4><p><strong>梯度</strong>：指出了在位置$(x,y)$处$f$的最大变化率方向。<br><strong>sobel算子</strong>：使用X方向的梯度和Y方向的梯度的绝对值之和作为该点的输出像素值。<br><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/sobel.png" alt="sobel" title="sobel"></p>
+<h3 id="频率与滤波"><a href="#频率与滤波" class="headerlink" title="频率与滤波"></a>频率与滤波</h3><h4 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h4><p>对于任意周期函数都可以表示为不同频率的正弦/余弦之和的形式。每个正弦/余弦都乘以不同的系数。对于非周期性函数也可用正弦/余弦乘以加权的函数积分来表示。这种公式就是傅里叶变换。<br><strong>特征</strong>：用傅里叶技术或者变换得来的函数特征完全可以通过傅里叶反变换来重建且不会丢失任何信息。</p>
+<p><strong>离散冲激</strong>是一个普通函数。</p>
+<p><strong>卷积定理</strong>：频率域的卷积等于空间域的相乘。空间域的相乘等于频率域的卷积。<br><strong>带限函数</strong>：对于中心点为原点的有限区间(带宽)之外的频率,其傅里叶变换为零的函数。<br><strong>取样定理</strong>：如果以超过函数<strong>最高频率两倍</strong>的取样率来获得样本,连续带限函数能完全由样本集恢复。<br>$\frac{1}{\Delta T}&gt;2\mu_{max}$。<br>完全等于最高频率的两倍的采样率称为<strong>奈奎斯特取样率</strong>。</p>
+<p>三种取样：过取样、欠取样、临界取样。</p>
+<p><strong>低通滤波器</strong>：消除所有较高的频率,让低频率通过。<br><strong>高通滤波器</strong>：消除较低的频率,让高频率通过。</p>
+<p>使用低于奈奎斯特取样率的频率取样会导致周期重叠。这就是<strong>频率混淆</strong>,或简称<strong>混淆</strong>。<br><strong>波尔模式(波纹)</strong>：两个近似登间隔的光栅之间产生的<strong>差拍模式</strong>。</p>
+<p><strong>图像的空间域</strong>是指图像平面所在的二维平面，对于空间域的图像处理主要是对像元灰度值的改变，其位置不变。</p>
+<p><strong>图像的频率域</strong>是图像像元的灰度值随位置变化的空间频率，以频谱表示信息分布特征，傅立叶变换能把遥感图像从空间域变换到只包含不同频率信息的频率域，原图像上的灰度突变部位、图像结构复杂的区域、图像细节及干扰噪声等信息集中在高频区，，而原图像上灰度变化平缓部位的信息集中在低频区。</p>
+<p>空间域的旋转与频率旋转等效。</p>
+<p>任意函数都可以表示为一个奇函数部分和一个偶函数部分的和(都可以含有虚部和实部)。<br><strong>对频谱图翻转</strong>：将低频信息集中到中心点,更好得进行滤波。<br><strong>高频信息</strong>：尖锐过度造成。<br><strong>低频信息</strong>：缓慢变化的灰度成分。</p>
+<h4 id="使用频率滤波器平滑图像"><a href="#使用频率滤波器平滑图像" class="headerlink" title="使用频率滤波器平滑图像"></a>使用频率滤波器平滑图像</h4><h5 id="理想低通滤波器"><a href="#理想低通滤波器" class="headerlink" title="理想低通滤波器"></a>理想低通滤波器</h5><h5 id="布特沃斯低通滤波器"><a href="#布特沃斯低通滤波器" class="headerlink" title="布特沃斯低通滤波器"></a>布特沃斯低通滤波器</h5><h5 id="高斯低通滤波器"><a href="#高斯低通滤波器" class="headerlink" title="高斯低通滤波器"></a>高斯低通滤波器</h5><h5 id="其他低通滤波器"><a href="#其他低通滤波器" class="headerlink" title="其他低通滤波器"></a>其他低通滤波器</h5><h4 id="使用频率滤波锐化图像"><a href="#使用频率滤波锐化图像" class="headerlink" title="使用频率滤波锐化图像"></a>使用频率滤波锐化图像</h4><h5 id="理想高通滤波器"><a href="#理想高通滤波器" class="headerlink" title="理想高通滤波器"></a>理想高通滤波器</h5><h5 id="布特沃斯高通滤波器"><a href="#布特沃斯高通滤波器" class="headerlink" title="布特沃斯高通滤波器"></a>布特沃斯高通滤波器</h5><h5 id="高斯高通滤波器"><a href="#高斯高通滤波器" class="headerlink" title="高斯高通滤波器"></a>高斯高通滤波器</h5><h5 id="频率域拉普拉斯滤波器"><a href="#频率域拉普拉斯滤波器" class="headerlink" title="频率域拉普拉斯滤波器"></a>频率域拉普拉斯滤波器</h5><h4 id="选择性滤波"><a href="#选择性滤波" class="headerlink" title="选择性滤波"></a>选择性滤波</h4><p>处理指定频率段或频率矩形的小区域</p>
+<ol>
+<li>带阻滤波器/带通滤波器</li>
+<li>陷波滤波器</li>
+</ol>
+<h5 id="带阻滤波器"><a href="#带阻滤波器" class="headerlink" title="带阻滤波器"></a>带阻滤波器</h5><ol>
+<li>理想带阻滤波器</li>
+<li>布特沃斯带阻滤波器</li>
+<li>高斯带阻滤波器</li>
+</ol>
+<h5 id="陷波滤波器"><a href="#陷波滤波器" class="headerlink" title="陷波滤波器"></a>陷波滤波器</h5><p>可以用中心已被平移到陷波滤波器中心的高通滤波器的乘积来构造。<br>使用n阶布特沃斯带阻滤波器。</p>
+<h3 id="图像复原与重建"><a href="#图像复原与重建" class="headerlink" title="图像复原与重建"></a>图像复原与重建</h3><h4 id="图像的退化-复原过程模型"><a href="#图像的退化-复原过程模型" class="headerlink" title="图像的退化/复原过程模型"></a>图像的退化/复原过程模型</h4><p><strong>退化过程</strong>：被建模为一个退化函数和一个加性噪音。</p>
+<p>图像复原的目的就是<strong>获得原始图像的一个估计</strong>$\hat{f}(x,y)$。我们希望这一估计能尽可能的接近原始输入图像。</p>
+<p><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F.png" alt="图像复原模型" title="图像复原模型"></p>
+<h4 id="噪声模型"><a href="#噪声模型" class="headerlink" title="噪声模型"></a>噪声模型</h4><p>主要来源于<strong>图像的获取</strong>和<strong>传输过程</strong>。</p>
+<p><strong>频率特性</strong>：指的是傅里叶域中噪声的频率内容。</p>
+<h5 id="一些重要的噪声概率密度函数"><a href="#一些重要的噪声概率密度函数" class="headerlink" title="一些重要的噪声概率密度函数"></a>一些重要的噪声概率密度函数</h5><ol>
+<li>高斯噪声</li>
+<li>爱尔兰(伽马)噪声</li>
+<li>指数噪声</li>
+<li>均匀噪声</li>
+<li>瑞利噪声</li>
+<li>脉冲(椒盐)噪声</li>
+</ol>
+<h5 id="周期噪声"><a href="#周期噪声" class="headerlink" title="周期噪声"></a>周期噪声</h5><p>周期噪声可通过<strong>频率域滤波</strong>显著减少。</p>
+<h5 id="噪声参数估计"><a href="#噪声参数估计" class="headerlink" title="噪声参数估计"></a>噪声参数估计</h5><p>周期噪声趋于产生频率尖峰。</p>
+<h4 id="只存早早上的复原——空间滤波"><a href="#只存早早上的复原——空间滤波" class="headerlink" title="只存早早上的复原——空间滤波"></a>只存早早上的复原——空间滤波</h4><h5 id="均值滤波器"><a href="#均值滤波器" class="headerlink" title="均值滤波器"></a>均值滤波器</h5><ol>
+<li>几何均值滤波器</li>
+<li>算数均值滤波器</li>
+<li>谐波均值滤波器</li>
+<li>逆谐波均值滤波器</li>
+</ol>
+<h5 id="统计排序滤波器"><a href="#统计排序滤波器" class="headerlink" title="统计排序滤波器"></a>统计排序滤波器</h5><ol>
+<li>中值滤波器</li>
+<li>最大值和最小值滤波器</li>
+<li>中点滤波器</li>
+<li>修正的阿尔法均值滤波器</li>
+</ol>
+<h5 id="自适应滤波器"><a href="#自适应滤波器" class="headerlink" title="自适应滤波器"></a>自适应滤波器</h5><ol>
+<li>自适应局部降低噪声滤波器</li>
+<li>自适应中值滤波器</li>
+</ol>
+<h4 id="使用频率域滤波消除周期噪声"><a href="#使用频率域滤波消除周期噪声" class="headerlink" title="使用频率域滤波消除周期噪声"></a>使用频率域滤波消除周期噪声</h4><h5 id="带阻滤波器-1"><a href="#带阻滤波器-1" class="headerlink" title="带阻滤波器"></a>带阻滤波器</h5><h5 id="带通滤波器"><a href="#带通滤波器" class="headerlink" title="带通滤波器"></a>带通滤波器</h5><h5 id="陷波滤波器-1"><a href="#陷波滤波器-1" class="headerlink" title="陷波滤波器"></a>陷波滤波器</h5><h5 id="最佳陷波滤波器"><a href="#最佳陷波滤波器" class="headerlink" title="最佳陷波滤波器"></a>最佳陷波滤波器</h5><h3 id="彩色图像处理"><a href="#彩色图像处理" class="headerlink" title="彩色图像处理"></a>彩色图像处理</h3><h4 id="彩色基础"><a href="#彩色基础" class="headerlink" title="彩色基础"></a>彩色基础</h4><p>光的三原色：<strong>蓝色</strong>、<strong>绿色</strong>、<strong>红色</strong>。<br>颜料(印刷业)三原色：<strong>深红色</strong>、<strong>青色</strong>、<strong>黄色</strong>。</p>
+<p><strong>前者颜色叠加可以生成各种颜色。后者则是减去另一种颜色,其原色定义为减去或者吸收光的一种原色,并反射或传输另外两种原色。</strong></p>
+<p><strong>灰度级</strong>仅提供一个亮度标量度量,他的范围是从黑色到灰色最终到白色。</p>
+<p>描述光源质量的三个基本量：<strong>辐射</strong>、<strong>光强</strong>、<strong>亮度</strong>。</p>
+<p><strong>辐射</strong>：从光源流出的能量总量。从光流出的能量总量用瓦特W来度量。<br><strong>光强</strong>：流明数lm度量。给出了观察者从光源感受到能量。<br><strong>亮度</strong>：主观描绘子,具体体现了无色的强度概念。</p>
+<p>通常用于区别不同颜色特性：<strong>亮度</strong>、<strong>色调</strong>、<strong>饱和度</strong>。</p>
+<p><strong>亮度</strong>：主观描绘子,具体体现了无色强度概念。<br><strong>色调</strong>：波长混合中主波长有关的属性。表示感知者感知的主要颜色。<br><strong>饱和度</strong>：相对纯净度,一个光混合白光的量。混合的越多饱和度越低。</p>
+<p><strong>色调</strong>和<strong>饱和度</strong>一起称为色度。<br>所以颜色可以用<strong>亮度</strong>、<strong>色度</strong>来表征。</p>
+<h4 id="颜色模型"><a href="#颜色模型" class="headerlink" title="颜色模型"></a>颜色模型</h4><p>颜色模型(彩色空间\彩色系统)目的：某些标准下用通常可以接受的方式方便对颜色加以说明。</p>
+<h5 id="RBG-模型"><a href="#RBG-模型" class="headerlink" title="RBG 模型"></a>RBG 模型</h5><p>红色、蓝色、绿色</p>
+<p>面向硬件,用于彩色监视和一大类彩色视频摄像机。</p>
+<p>各个系统的颜色不同,所以有一个通用色色彩集,独立于硬件。被称为<strong>稳定RGB色集合</strong>,或者称为<strong>全系统稳定色</strong>集合。互联网中这种结合被称为<strong>Web色</strong>或者<strong>稳定浏览器色</strong>。</p>
+<p>216色中每个颜色只可区：0、51、102、153、204、255。</p>
+<h5 id="CMY-CMY-K-模型"><a href="#CMY-CMY-K-模型" class="headerlink" title="CMY CMY(K)模型"></a>CMY CMY(K)模型</h5><p>用于打色打印机。</p>
+<p>等量的CMY三原色可以生成黑色但是不纯于是出现了CMYK,其中K为黑色。</p>
+<p>CMY：青色、深红色、黄色<br>CMYK：青色、深红色、黄色、黑色</p>
+<h5 id="HSI-模型"><a href="#HSI-模型" class="headerlink" title="HSI 模型"></a>HSI 模型</h5><h4 id="伪彩色处理"><a href="#伪彩色处理" class="headerlink" title="伪彩色处理"></a>伪彩色处理</h4><h5 id="灰度分层"><a href="#灰度分层" class="headerlink" title="灰度分层"></a>灰度分层</h5><p>如果一副图像被描述成三维函数,则分层的方法可视为放置一些<strong>平行于该图像的的坐标平面的平面</strong>。然后在这个平面相交的区域中”<strong>切割</strong>“函数图像,平面上方设置为一种彩色,下方设置为另一种彩色。</p>
+<p><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E7%81%B0%E5%BA%A6%E5%88%86%E5%B1%82.png" alt="灰度分层模型" title="灰度分层模型"></p>
+<p><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E7%81%B0%E5%BA%A6%E5%88%86%E5%B1%822.png" alt="灰度分层2" title="灰度分层1"><br><img src="https://gitee.com/snapping/wtc_file/raw/picture/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E7%81%B0%E5%BA%A6%E5%88%86%E5%B1%823.png" alt="灰度分层2" title="灰度分层2"></p>
+<h5 id="灰度到彩色变换"><a href="#灰度到彩色变换" class="headerlink" title="灰度到彩色变换"></a>灰度到彩色变换</h5><ol>
+<li>对像素的灰度进行三个独立变换(RGB)。</li>
+<li>将变换结果分别送到彩色监视器的红、绿、蓝通道。</li>
+<li>合成一幅图像。</li>
+</ol>
+<h4 id="全彩色图像处理"><a href="#全彩色图像处理" class="headerlink" title="全彩色图像处理"></a>全彩色图像处理</h4><p>分为两类。1. 分别处理每一幅分量图像,然后由分别处理过的分量图像来形成一副处理过的合成彩色图像。2. 直接处理像素。</p>
+<p>对于第一种情况要满足两种情况。</p>
+<ol>
+<li>处理必须对向量和标量都可用</li>
+<li>对向量的每个分量的操作杜宇其他分量都必须独立。</li>
+</ol>
+<h5 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h5><p>$g(x,y)=T[f(x,y)]$</p>
+<h4 id="补色"><a href="#补色" class="headerlink" title="补色"></a>补色</h4><p>在色彩环上,与色调直接相对的另一端被称为<strong>补色</strong>。补色对于<strong>增强嵌在彩色图像暗区的细节</strong>很有用。</p>
+<h5 id="彩色分层"><a href="#彩色分层" class="headerlink" title="彩色分层"></a>彩色分层</h5><p>把不感兴趣的之外的彩色设为中性色。</p>
+<h5 id="色调和颜色校正"><a href="#色调和颜色校正" class="headerlink" title="色调和颜色校正"></a>色调和颜色校正</h5><p>与数字摄像机、平板扫描仪和喷墨打印机相连,个人计算机就成了数字暗室,从而允许我们对图像进行色调调整和彩色校正。</p>
+<h5 id="平滑和锐化"><a href="#平滑和锐化" class="headerlink" title="平滑和锐化"></a>平滑和锐化</h5><p><strong>彩色图像平滑</strong><br>如灰度图像平滑一样,但是使用分量向量代替灰度标量值。</p>
+<p><strong>彩色图像锐化</strong><br>可使用laplas。</p>
+<h4 id="基于彩色的图像分割"><a href="#基于彩色的图像分割" class="headerlink" title="基于彩色的图像分割"></a>基于彩色的图像分割</h4><h5 id="基于HSI彩色空间的分割"><a href="#基于HSI彩色空间的分割" class="headerlink" title="基于HSI彩色空间的分割"></a>基于HSI彩色空间的分割</h5><h5 id="RGB向量空间中的分割"><a href="#RGB向量空间中的分割" class="headerlink" title="RGB向量空间中的分割"></a>RGB向量空间中的分割</h5><h5 id="彩色边缘检测"><a href="#彩色边缘检测" class="headerlink" title="彩色边缘检测"></a>彩色边缘检测</h5><h4 id="彩色图像中的噪声"><a href="#彩色图像中的噪声" class="headerlink" title="彩色图像中的噪声"></a>彩色图像中的噪声</h4><p>使用中值操作时需要找到一种有意义的向量排序方式。</p>
+<h4 id="彩色图像压缩"><a href="#彩色图像压缩" class="headerlink" title="彩色图像压缩"></a>彩色图像压缩</h4><p><strong>对象</strong>：每个彩色像素的分量。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/05/29/dijkstra%20spfa%20bellman-ford%20%E6%80%BB%E7%BB%93/" rel="next" title="dijkstra spfa bellman-ford 总结">
+                <i class="fa fa-chevron-left"></i> dijkstra spfa bellman-ford 总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/06/27/%E8%80%81%E5%B8%88%E4%B8%8A%E8%AF%BE%E6%8F%90%E9%97%AE%E7%9A%84%E9%A2%98/" rel="prev" title="题目合集">
+                题目合集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%AA%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">绪论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80"><span class="nav-number">2.</span> <span class="nav-text">数字图像处理基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E6%8F%92"><span class="nav-number">2.1.</span> <span class="nav-text">内插</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5-amp-amp-%E9%82%BB%E5%9F%9F"><span class="nav-number">2.2.</span> <span class="nav-text">邻接&amp;&amp;邻域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E9%80%9A%E6%80%A7%E3%80%81%E8%BE%B9%E7%95%8C%E3%80%81%E5%8C%BA%E5%9F%9F"><span class="nav-number">2.3.</span> <span class="nav-text">连通性、边界、区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%9D%E7%A6%BB"><span class="nav-number">2.4.</span> <span class="nav-text">距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.5.</span> <span class="nav-text">工具介绍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E5%92%8C%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2"><span class="nav-number">3.</span> <span class="nav-text">灰度变换和空间滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BB%A4%E6%B3%A2"><span class="nav-number">3.1.</span> <span class="nav-text">滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E5%87%BD%E6%95%B0"><span class="nav-number">3.2.</span> <span class="nav-text">基本的灰度变换函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%8F%8D%E8%BD%AC"><span class="nav-number">3.2.1.</span> <span class="nav-text">图像反转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E6%95%B0%E5%8F%98%E6%8D%A2"><span class="nav-number">3.2.2.</span> <span class="nav-text">对数变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%82%E5%BE%8B-%E4%BC%BD%E9%A9%AC-%E5%8F%98%E6%8D%A2"><span class="nav-number">3.2.3.</span> <span class="nav-text">幂律(伽马)变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E5%87%BD%E6%95%B0"><span class="nav-number">3.2.4.</span> <span class="nav-text">分段线性变换函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E5%BA%A6%E6%8B%89%E4%BC%B8%E5%8A%A8"><span class="nav-number">3.2.4.1.</span> <span class="nav-text">对比度拉伸动</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%81%B0%E5%BA%A6%E7%BA%A7%E5%88%86%E5%B1%82"><span class="nav-number">3.2.4.2.</span> <span class="nav-text">灰度级分层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AF%94%E7%89%B9%E4%BD%8D%E5%88%86%E5%B1%82"><span class="nav-number">3.2.4.3.</span> <span class="nav-text">比特位分层</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%A4%84%E7%90%86"><span class="nav-number">3.3.</span> <span class="nav-text">直方图处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1"><span class="nav-number">3.3.1.</span> <span class="nav-text">直方图均衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%8C%B9%E9%85%8D"><span class="nav-number">3.3.2.</span> <span class="nav-text">直方图匹配</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2%E5%9F%BA%E7%A1%80"><span class="nav-number">3.4.</span> <span class="nav-text">空间滤波基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2%E6%9C%BA%E7%90%86"><span class="nav-number">3.4.1.</span> <span class="nav-text">空间滤波机理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B3%E6%BB%91%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.4.2.</span> <span class="nav-text">平滑空间滤波器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B9%B3%E6%BB%91%E7%BA%BF%E6%80%A7%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.4.2.1.</span> <span class="nav-text">平滑线性滤波器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E6%8E%92%E5%BA%8F%E6%BB%A4%E6%B3%A2%E5%99%A8-%E9%9D%9E%E7%BA%BF%E6%80%A7"><span class="nav-number">3.4.2.2.</span> <span class="nav-text">统计排序滤波器(非线性)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%90%E5%8C%96%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.4.3.</span> <span class="nav-text">锐化空间滤波器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%AE%97%E5%AD%90"><span class="nav-number">3.4.3.1.</span> <span class="nav-text">拉普拉斯算子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9D%9E%E9%94%90%E5%8C%96%E6%8E%A9%E8%94%BD%E5%92%8C%E6%8F%90%E9%AB%98%E6%BB%A4%E6%B3%A2"><span class="nav-number">3.4.3.2.</span> <span class="nav-text">非锐化掩蔽和提高滤波</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%80%E9%98%B6%E5%BE%AE%E5%88%86%E9%94%90%E5%8C%96-%E9%9D%9E%E7%BA%BF%E6%80%A7-%E5%9B%BE%E5%83%8F%E2%80%94%E2%80%94%E6%A2%AF%E5%BA%A6"><span class="nav-number">3.4.4.</span> <span class="nav-text">使用一阶微分锐化(非线性)图像——梯度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%91%E7%8E%87%E4%B8%8E%E6%BB%A4%E6%B3%A2"><span class="nav-number">3.5.</span> <span class="nav-text">频率与滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">3.5.1.</span> <span class="nav-text">傅里叶变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%A2%91%E7%8E%87%E6%BB%A4%E6%B3%A2%E5%99%A8%E5%B9%B3%E6%BB%91%E5%9B%BE%E5%83%8F"><span class="nav-number">3.5.2.</span> <span class="nav-text">使用频率滤波器平滑图像</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%90%86%E6%83%B3%E4%BD%8E%E9%80%9A%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.5.2.1.</span> <span class="nav-text">理想低通滤波器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%83%E7%89%B9%E6%B2%83%E6%96%AF%E4%BD%8E%E9%80%9A%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.5.2.2.</span> <span class="nav-text">布特沃斯低通滤波器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E4%BD%8E%E9%80%9A%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.5.2.3.</span> <span class="nav-text">高斯低通滤波器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E4%BD%8E%E9%80%9A%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.5.2.4.</span> <span class="nav-text">其他低通滤波器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%A2%91%E7%8E%87%E6%BB%A4%E6%B3%A2%E9%94%90%E5%8C%96%E5%9B%BE%E5%83%8F"><span class="nav-number">3.5.3.</span> <span class="nav-text">使用频率滤波锐化图像</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%90%86%E6%83%B3%E9%AB%98%E9%80%9A%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.5.3.1.</span> <span class="nav-text">理想高通滤波器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%83%E7%89%B9%E6%B2%83%E6%96%AF%E9%AB%98%E9%80%9A%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.5.3.2.</span> <span class="nav-text">布特沃斯高通滤波器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E9%AB%98%E9%80%9A%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.5.3.3.</span> <span class="nav-text">高斯高通滤波器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A2%91%E7%8E%87%E5%9F%9F%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.5.3.4.</span> <span class="nav-text">频率域拉普拉斯滤波器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%80%A7%E6%BB%A4%E6%B3%A2"><span class="nav-number">3.5.4.</span> <span class="nav-text">选择性滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%A6%E9%98%BB%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.5.4.1.</span> <span class="nav-text">带阻滤波器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%99%B7%E6%B3%A2%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.5.4.2.</span> <span class="nav-text">陷波滤波器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E4%B8%8E%E9%87%8D%E5%BB%BA"><span class="nav-number">3.6.</span> <span class="nav-text">图像复原与重建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E7%9A%84%E9%80%80%E5%8C%96-%E5%A4%8D%E5%8E%9F%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.6.1.</span> <span class="nav-text">图像的退化&#x2F;复原过程模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%99%AA%E5%A3%B0%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.6.2.</span> <span class="nav-text">噪声模型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E9%87%8D%E8%A6%81%E7%9A%84%E5%99%AA%E5%A3%B0%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6%E5%87%BD%E6%95%B0"><span class="nav-number">3.6.2.1.</span> <span class="nav-text">一些重要的噪声概率密度函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%91%A8%E6%9C%9F%E5%99%AA%E5%A3%B0"><span class="nav-number">3.6.2.2.</span> <span class="nav-text">周期噪声</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%99%AA%E5%A3%B0%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1"><span class="nav-number">3.6.2.3.</span> <span class="nav-text">噪声参数估计</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AA%E5%AD%98%E6%97%A9%E6%97%A9%E4%B8%8A%E7%9A%84%E5%A4%8D%E5%8E%9F%E2%80%94%E2%80%94%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2"><span class="nav-number">3.6.3.</span> <span class="nav-text">只存早早上的复原——空间滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.6.3.1.</span> <span class="nav-text">均值滤波器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E6%8E%92%E5%BA%8F%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.6.3.2.</span> <span class="nav-text">统计排序滤波器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.6.3.3.</span> <span class="nav-text">自适应滤波器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%A2%91%E7%8E%87%E5%9F%9F%E6%BB%A4%E6%B3%A2%E6%B6%88%E9%99%A4%E5%91%A8%E6%9C%9F%E5%99%AA%E5%A3%B0"><span class="nav-number">3.6.4.</span> <span class="nav-text">使用频率域滤波消除周期噪声</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%A6%E9%98%BB%E6%BB%A4%E6%B3%A2%E5%99%A8-1"><span class="nav-number">3.6.4.1.</span> <span class="nav-text">带阻滤波器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%A6%E9%80%9A%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.6.4.2.</span> <span class="nav-text">带通滤波器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%99%B7%E6%B3%A2%E6%BB%A4%E6%B3%A2%E5%99%A8-1"><span class="nav-number">3.6.4.3.</span> <span class="nav-text">陷波滤波器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E9%99%B7%E6%B3%A2%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-number">3.6.4.4.</span> <span class="nav-text">最佳陷波滤波器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="nav-number">3.7.</span> <span class="nav-text">彩色图像处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%A9%E8%89%B2%E5%9F%BA%E7%A1%80"><span class="nav-number">3.7.1.</span> <span class="nav-text">彩色基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.7.2.</span> <span class="nav-text">颜色模型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#RBG-%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.7.2.1.</span> <span class="nav-text">RBG 模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CMY-CMY-K-%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.7.2.2.</span> <span class="nav-text">CMY CMY(K)模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HSI-%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.7.2.3.</span> <span class="nav-text">HSI 模型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%AA%E5%BD%A9%E8%89%B2%E5%A4%84%E7%90%86"><span class="nav-number">3.7.3.</span> <span class="nav-text">伪彩色处理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%81%B0%E5%BA%A6%E5%88%86%E5%B1%82"><span class="nav-number">3.7.3.1.</span> <span class="nav-text">灰度分层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%81%B0%E5%BA%A6%E5%88%B0%E5%BD%A9%E8%89%B2%E5%8F%98%E6%8D%A2"><span class="nav-number">3.7.3.2.</span> <span class="nav-text">灰度到彩色变换</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="nav-number">3.7.4.</span> <span class="nav-text">全彩色图像处理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F"><span class="nav-number">3.7.4.1.</span> <span class="nav-text">公式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A5%E8%89%B2"><span class="nav-number">3.7.5.</span> <span class="nav-text">补色</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BD%A9%E8%89%B2%E5%88%86%E5%B1%82"><span class="nav-number">3.7.5.1.</span> <span class="nav-text">彩色分层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%89%B2%E8%B0%83%E5%92%8C%E9%A2%9C%E8%89%B2%E6%A0%A1%E6%AD%A3"><span class="nav-number">3.7.5.2.</span> <span class="nav-text">色调和颜色校正</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B9%B3%E6%BB%91%E5%92%8C%E9%94%90%E5%8C%96"><span class="nav-number">3.7.5.3.</span> <span class="nav-text">平滑和锐化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%BD%A9%E8%89%B2%E7%9A%84%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2"><span class="nav-number">3.7.6.</span> <span class="nav-text">基于彩色的图像分割</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EHSI%E5%BD%A9%E8%89%B2%E7%A9%BA%E9%97%B4%E7%9A%84%E5%88%86%E5%89%B2"><span class="nav-number">3.7.6.1.</span> <span class="nav-text">基于HSI彩色空间的分割</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RGB%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%AD%E7%9A%84%E5%88%86%E5%89%B2"><span class="nav-number">3.7.6.2.</span> <span class="nav-text">RGB向量空间中的分割</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BD%A9%E8%89%B2%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B"><span class="nav-number">3.7.6.3.</span> <span class="nav-text">彩色边缘检测</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E4%B8%AD%E7%9A%84%E5%99%AA%E5%A3%B0"><span class="nav-number">3.7.7.</span> <span class="nav-text">彩色图像中的噪声</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9"><span class="nav-number">3.7.8.</span> <span class="nav-text">彩色图像压缩</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">无敌 .2.0</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

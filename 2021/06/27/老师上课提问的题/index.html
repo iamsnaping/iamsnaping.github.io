@@ -1,37 +1,703 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="chapter 2空间和灰度分辨率分别是什么。 空间：由一幅图像的坐标张成的实平面部分称为空间域。空间域是包含图像像素的简单平面。 灰度分辨率：灰度级中可分辨的最小变化。  图像内插 双线性插值 双三次线性插值 最邻近插值  针对降噪的带噪图像相加 $f(x,y)$,$g(x,y)$表示什么考虑函数$g(x,y)&#x3D;f(x,y)+\eta (x,y)$$f(x,y)$ 原图像即污染后图像$g(x,y">
+<meta property="og:type" content="article">
+<meta property="og:title" content="题目合集">
+<meta property="og:url" content="http://yoursite.com/2021/06/27/%E8%80%81%E5%B8%88%E4%B8%8A%E8%AF%BE%E6%8F%90%E9%97%AE%E7%9A%84%E9%A2%98/index.html">
+<meta property="og:site_name" content="一个不愿透露姓名的网友的博客">
+<meta property="og:description" content="chapter 2空间和灰度分辨率分别是什么。 空间：由一幅图像的坐标张成的实平面部分称为空间域。空间域是包含图像像素的简单平面。 灰度分辨率：灰度级中可分辨的最小变化。  图像内插 双线性插值 双三次线性插值 最邻近插值  针对降噪的带噪图像相加 $f(x,y)$,$g(x,y)$表示什么考虑函数$g(x,y)&#x3D;f(x,y)+\eta (x,y)$$f(x,y)$ 原图像即污染后图像$g(x,y">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-06-27T07:37:01.073Z">
+<meta property="article:modified_time" content="2021-06-27T07:36:26.168Z">
+<meta property="article:author" content="无敌 .2.0">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/06/27/老师上课提问的题/"/>
+
+
+
+
+
+  <title>题目合集 | 一个不愿透露姓名的网友的博客</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一个不愿透露姓名的网友的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">真香</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/27/%E8%80%81%E5%B8%88%E4%B8%8A%E8%AF%BE%E6%8F%90%E9%97%AE%E7%9A%84%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个不愿透露姓名的网友的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">题目合集</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-27T15:37:01+08:00">
+                2021-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="chapter-2"><a href="#chapter-2" class="headerlink" title="chapter 2"></a>chapter 2</h3><h4 id="空间和灰度分辨率分别是什么。"><a href="#空间和灰度分辨率分别是什么。" class="headerlink" title="空间和灰度分辨率分别是什么。"></a>空间和灰度分辨率分别是什么。</h4><ol>
+<li>空间：由一幅图像的坐标张成的实平面部分称为空间域。空间域是包含图像像素的简单平面。</li>
+<li>灰度分辨率：灰度级中可分辨的最小变化。</li>
+</ol>
+<h4 id="图像内插"><a href="#图像内插" class="headerlink" title="图像内插"></a>图像内插</h4><ol>
+<li>双线性插值</li>
+<li>双三次线性插值</li>
+<li>最邻近插值</li>
+</ol>
+<h4 id="针对降噪的带噪图像相加-f-x-y-g-x-y-表示什么"><a href="#针对降噪的带噪图像相加-f-x-y-g-x-y-表示什么" class="headerlink" title="针对降噪的带噪图像相加 $f(x,y)$,$g(x,y)$表示什么"></a>针对降噪的带噪图像相加 $f(x,y)$,$g(x,y)$表示什么</h4><p>考虑函数<br>$g(x,y)=f(x,y)+\eta (x,y)$<br>$f(x,y)$ 原图像即污染后图像<br>$g(x,y)$ 无噪声图像<br>$\eta (x,y)$ 加性噪声</p>
+<h3 id="chapter-3"><a href="#chapter-3" class="headerlink" title="chapter 3"></a>chapter 3</h3><h4 id="灰度变换是什么"><a href="#灰度变换是什么" class="headerlink" title="灰度变换是什么"></a>灰度变换是什么</h4><p>指根据某种目标条件按一定变换关系逐点改变源图像中每一个像素灰度值的方法。目的是为了改善画质，使图像的显示效果更加清晰。</p>
+<h4 id="灰度变换分为集中"><a href="#灰度变换分为集中" class="headerlink" title="灰度变换分为集中"></a>灰度变换分为集中</h4><ol>
+<li>对数变换</li>
+<li>伽马(幂律)变换</li>
+<li>分段线性函数变换<ol>
+<li>对比度拉伸</li>
+<li>比特位分层</li>
+<li>灰度级分层</li>
+</ol>
+</li>
+<li>灰度反转</li>
+</ol>
+<h4 id="进行灰度变换时对图像的影响是什么"><a href="#进行灰度变换时对图像的影响是什么" class="headerlink" title="进行灰度变换时对图像的影响是什么"></a>进行灰度变换时对图像的影响是什么</h4><p>将图像中的像素的灰度值进行改变。</p>
+<h4 id="直方图是什么"><a href="#直方图是什么" class="headerlink" title="直方图是什么"></a>直方图是什么</h4><p>图像直方图是反映一个图像像素分布的统计表，其实横坐标代表了图像像素的种类，可以是灰度的，也可以是彩色的。纵坐标代表了每一种颜色值在图像中的像素总数或者占所有像素个数的百分比。</p>
+<h4 id="直方图均衡化是什么"><a href="#直方图均衡化是什么" class="headerlink" title="直方图均衡化是什么"></a>直方图均衡化是什么</h4><p>是一种增强图像对比度的方法,其主要思想是将一副图像的直方图分布变成近似均匀分布,从而增强图像的对比度。直方图均衡化是输入图像中各灰度级别通过式子映射到输出图像中，该灰度级别对应的Y值不变。通过这样处理能达到图像中灰度级别均衡分布的目的</p>
+<p>直方图均衡化是将原图像通过某种变换，得到一幅灰度直方图为均匀分布的新图像的方法，这样增加了像素灰度值的动态范围，从而达到增强图像整体对比度的效果。</p>
+<h4 id="直方图匹配-规定化"><a href="#直方图匹配-规定化" class="headerlink" title="直方图匹配(规定化)"></a>直方图匹配(规定化)</h4><p>又称直方图规定化。是指将一幅图像的直方图变成规定形状的直方图而进行的图像增强方法。有时我们希望处理后的图像具有规定的直方图形状可能更有用。这种于产生处理后有特殊直方图的方法称为直方图匹配。</p>
+<h4 id="空间滤波和卷积有什么区别他们是什么"><a href="#空间滤波和卷积有什么区别他们是什么" class="headerlink" title="空间滤波和卷积有什么区别他们是什么"></a>空间滤波和卷积有什么区别他们是什么</h4><p>卷积：<br>滤波器旋转$180^。$然后与图像进行相关操作。<br>空间滤波：<br>滤波器与图像做相关操作。</p>
+<h4 id="锐化空间滤波器有几个"><a href="#锐化空间滤波器有几个" class="headerlink" title="锐化空间滤波器有几个"></a>锐化空间滤波器有几个</h4><p>使用二阶微分锐化图像：拉普拉斯算子<br>使用一阶微分也就是梯度锐化图像：sobel算子</p>
+<h3 id="chapter-4"><a href="#chapter-4" class="headerlink" title="chapter 4"></a>chapter 4</h3><h4 id="图像的频率域是什么"><a href="#图像的频率域是什么" class="headerlink" title="图像的频率域是什么"></a>图像的频率域是什么</h4><p>指从函数的频率角度出发分析函数。频率是横坐标，振幅是纵坐标。傅里叶变换得到的正余弦函数的频率。</p>
+<p>傅里叶变换是$f(t)$乘以正弦项的展开,正弦项的频率由$\mu$的值决定。因为积分后左边的唯一变量是$\mu$所以我们说傅里叶变换域是频率域,而图像的傅里叶变换后同样也是频率域。</p>
+<h4 id="傅里叶变换是什么"><a href="#傅里叶变换是什么" class="headerlink" title="傅里叶变换是什么"></a>傅里叶变换是什么</h4><p>对于任意周期函数都可以表示为不同频率的正弦/余弦之和的形式。每个正弦/余弦都乘以不同的系数。对于非周期性函数也可用正弦/余弦乘以加权的函数积分来表示。这种公式就是傅里叶变换</p>
+<h4 id="图像信息是连续的为什么能进行傅里叶变换"><a href="#图像信息是连续的为什么能进行傅里叶变换" class="headerlink" title="图像信息是连续的为什么能进行傅里叶变换"></a>图像信息是连续的为什么能进行傅里叶变换</h4><p>傅里叶变换可以将任意连续函数变成以正弦/余弦乘以加权的函数积分来表示</p>
+<h4 id="保存下来的图像是离散的为什么能进行傅里叶变换"><a href="#保存下来的图像是离散的为什么能进行傅里叶变换" class="headerlink" title="保存下来的图像是离散的为什么能进行傅里叶变换"></a>保存下来的图像是离散的为什么能进行傅里叶变换</h4><p>图像信息是连续的但是我们使用矩阵来保存图像就是离散的，经过取样后的<br>然后连续的傅立叶可以推广到离散函数上</p>
+<h4 id="取样的三种情况及混淆"><a href="#取样的三种情况及混淆" class="headerlink" title="取样的三种情况及混淆"></a>取样的三种情况及混淆</h4><p>欠采样：采样频率小于最高频率的两倍<br>临界采样：采样频率等于最高频率的两倍<br>过采样：采样频率大于最高频率的两倍</p>
+<p>欠采样会导致混淆。</p>
+<p>最高频率两倍的采样率被称为奈奎斯特采样率。</p>
+<p>以低于奈奎斯特采样率的采样,最终结果会是周期重叠,这样会导致变换后的周期被来自邻近的周期频率破坏,然后方变化会产生一个被破坏了的函数。这种效果就被称为频率混淆或者混淆。</p>
+<h4 id="傅里叶变换的性质"><a href="#傅里叶变换的性质" class="headerlink" title="傅里叶变换的性质"></a>傅里叶变换的性质</h4><ol>
+<li>对称性</li>
+<li>周期性</li>
+<li>平移不影响傅里叶变换的幅度值,空间域旋转多少,频率域就会旋转多少</li>
+<li>若对分别在$t$和$z$方向上所取的$M \times N$个样点组成。令$\Delta T$和$\Delta Z$表示样本间的间隔则离散频率域变量间的间隔分别由$\Delta u=\frac{1}{M \Delta T}$和$\Delta v=\frac{1}{N \Delta Z}$</li>
+</ol>
+<h4 id="傅里叶谱和相角"><a href="#傅里叶谱和相角" class="headerlink" title="傅里叶谱和相角"></a>傅里叶谱和相角</h4><p>图像经过傅里叶变换后我们可以的得到两个矩阵,一个代表实部一个代表虚部。我们将虚部平方和实部平方相加后再开方最后得到一个矩阵,那个就是傅里叶谱,如果我们将虚部与实部相除再对其去arctan则得到的角就是相角。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/06/27/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="next" title="数字图像处理">
+                <i class="fa fa-chevron-left"></i> 数字图像处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter-2"><span class="nav-number">1.</span> <span class="nav-text">chapter 2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E5%92%8C%E7%81%B0%E5%BA%A6%E5%88%86%E8%BE%A8%E7%8E%87%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E3%80%82"><span class="nav-number">1.1.</span> <span class="nav-text">空间和灰度分辨率分别是什么。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%86%85%E6%8F%92"><span class="nav-number">1.2.</span> <span class="nav-text">图像内插</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%92%88%E5%AF%B9%E9%99%8D%E5%99%AA%E7%9A%84%E5%B8%A6%E5%99%AA%E5%9B%BE%E5%83%8F%E7%9B%B8%E5%8A%A0-f-x-y-g-x-y-%E8%A1%A8%E7%A4%BA%E4%BB%80%E4%B9%88"><span class="nav-number">1.3.</span> <span class="nav-text">针对降噪的带噪图像相加 $f(x,y)$,$g(x,y)$表示什么</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter-3"><span class="nav-number">2.</span> <span class="nav-text">chapter 3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.1.</span> <span class="nav-text">灰度变换是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E5%88%86%E4%B8%BA%E9%9B%86%E4%B8%AD"><span class="nav-number">2.2.</span> <span class="nav-text">灰度变换分为集中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E8%A1%8C%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E6%97%B6%E5%AF%B9%E5%9B%BE%E5%83%8F%E7%9A%84%E5%BD%B1%E5%93%8D%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.3.</span> <span class="nav-text">进行灰度变换时对图像的影响是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.4.</span> <span class="nav-text">直方图是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.5.</span> <span class="nav-text">直方图均衡化是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%8C%B9%E9%85%8D-%E8%A7%84%E5%AE%9A%E5%8C%96"><span class="nav-number">2.6.</span> <span class="nav-text">直方图匹配(规定化)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2%E5%92%8C%E5%8D%B7%E7%A7%AF%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E4%BB%96%E4%BB%AC%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.7.</span> <span class="nav-text">空间滤波和卷积有什么区别他们是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%90%E5%8C%96%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2%E5%99%A8%E6%9C%89%E5%87%A0%E4%B8%AA"><span class="nav-number">2.8.</span> <span class="nav-text">锐化空间滤波器有几个</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chapter-4"><span class="nav-number">3.</span> <span class="nav-text">chapter 4</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E7%9A%84%E9%A2%91%E7%8E%87%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">3.1.</span> <span class="nav-text">图像的频率域是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">3.2.</span> <span class="nav-text">傅里叶变换是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E4%BF%A1%E6%81%AF%E6%98%AF%E8%BF%9E%E7%BB%AD%E7%9A%84%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E8%BF%9B%E8%A1%8C%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">3.3.</span> <span class="nav-text">图像信息是连续的为什么能进行傅里叶变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%9D%E5%AD%98%E4%B8%8B%E6%9D%A5%E7%9A%84%E5%9B%BE%E5%83%8F%E6%98%AF%E7%A6%BB%E6%95%A3%E7%9A%84%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E8%BF%9B%E8%A1%8C%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">3.4.</span> <span class="nav-text">保存下来的图像是离散的为什么能进行傅里叶变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%96%E6%A0%B7%E7%9A%84%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5%E5%8F%8A%E6%B7%B7%E6%B7%86"><span class="nav-number">3.5.</span> <span class="nav-text">取样的三种情况及混淆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">3.6.</span> <span class="nav-text">傅里叶变换的性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E8%B0%B1%E5%92%8C%E7%9B%B8%E8%A7%92"><span class="nav-number">3.7.</span> <span class="nav-text">傅里叶谱和相角</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">无敌 .2.0</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
