@@ -229,6 +229,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/13/DMA/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="无敌 .2.0">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个不愿透露姓名的网友的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/13/DMA/" itemprop="url">DMA(直接存储器访问)方式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-13T17:31:29+08:00">
+                2020-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DMA占用内存时CPU不可占用</span><br><span class="line">目录：</span><br><span class="line">1.DMA方式特点</span><br><span class="line">2.DMA接口的功能和组成</span><br><span class="line">3.DMA的工作过程</span><br><span class="line">4.DMA接口的类型</span><br></pre></td></tr></table></figure>
+<h2 id="1-DMA方式特点"><a href="#1-DMA方式特点" class="headerlink" title="1.DMA方式特点"></a>1.DMA方式特点</h2><h3 id="1-DMA和程序中断两种方式的数据通路"><a href="#1-DMA和程序中断两种方式的数据通路" class="headerlink" title="1.DMA和程序中断两种方式的数据通路"></a>1.DMA和程序中断两种方式的数据通路</h3><p><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/78.png" alt="78"><br>可跳过CPU节省CPU。把CPU冲数据交换中解放出来</p>
+<h3 id="2-DMA与主存交换数据的三种方式"><a href="#2-DMA与主存交换数据的三种方式" class="headerlink" title="2.DMA与主存交换数据的三种方式"></a>2.DMA与主存交换数据的三种方式</h3><h4 id="1-停止CPU访问主存"><a href="#1-停止CPU访问主存" class="headerlink" title="1.停止CPU访问主存"></a>1.停止CPU访问主存</h4><ol>
+<li>控制简单</li>
+<li>CPU处于不工作状态或者维持现状</li>
+<li>为充分发挥CPU对主存的利用率<h4 id="2-周期挪用（窃取）"><a href="#2-周期挪用（窃取）" class="headerlink" title="2.周期挪用（窃取）"></a>2.周期挪用（窃取）</h4></li>
+<li>CPU访问时，DMA不可占用</li>
+<li>CPU未访问时，DMA可占用</li>
+<li>CPU和DMA同时申请时，占用分配给DMA（DMA连接都是高速I/O设备，不响应可能造成数据流失）<h4 id="3-DMA-CPU交替使用"><a href="#3-DMA-CPU交替使用" class="headerlink" title="3.DMA,CPU交替使用"></a>3.DMA,CPU交替使用</h4>CPU工作周期C1，C2<br>C1分配给CPU<br>C2分配给DMA<h2 id="2-DMA接口的功能和组成"><a href="#2-DMA接口的功能和组成" class="headerlink" title="2.DMA接口的功能和组成"></a>2.DMA接口的功能和组成</h2><h3 id="1-DMA接口的功能"><a href="#1-DMA接口的功能" class="headerlink" title="1.DMA接口的功能"></a>1.DMA接口的功能</h3></li>
+<li>向CPU申请DMA传送</li>
+<li>处理总线控制权的转交</li>
+<li>管理系统总线，控制数据传送</li>
+<li>确定数据传送的首地址和长度，修改传送过程中的地址和长度</li>
+<li>DMA传送结束，给出操作完成的信号<h3 id="2-DMA接口的组成"><a href="#2-DMA接口的组成" class="headerlink" title="2.DMA接口的组成"></a>2.DMA接口的组成</h3>AR（地址寄存器）：得知传输地址<br>WC（计数器）：得知传输计数量（字数）<br>BR（数据缓冲器）：外部数据缓存<br>DAR（设备地址寄存器）：1.设备选择电路是使用，将设备地址保存。 2.对硬盘访问时，保存访问地址信息。<br><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/84.png" alt="84"><br>DREQ:device request设备请求<br>DACK:device acknoledge设备应答<br>设备对DMA设备逻辑控制发出DREQ，DMA设备逻辑控制对设备发出DACK。<br>DMA对总线发出使用信号（HRQ）。<br>总线对DMA发出应答信号（HLDA）。<h2 id="3-DMA的工作过程"><a href="#3-DMA的工作过程" class="headerlink" title="3.DMA的工作过程"></a>3.DMA的工作过程</h2><h3 id="1-DMA传送过程"><a href="#1-DMA传送过程" class="headerlink" title="1.DMA传送过程"></a>1.DMA传送过程</h3></li>
+<li>预处理</li>
+<li>数据传送</li>
+<li>后处理<h4 id="1-预处理"><a href="#1-预处理" class="headerlink" title="1.预处理"></a>1.预处理</h4></li>
+<li>通知DMA控制逻辑的传送方向（输入输出）</li>
+<li>设备地址—-&gt; DMA（DAR）</li>
+<li>主存地址—-&gt; DMA（AR）</li>
+<li>传送字数—-&gt; DMA（WC）<h4 id="2-数据传送"><a href="#2-数据传送" class="headerlink" title="2.数据传送"></a>2.数据传送</h4><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/79.png" alt="79"><br>输入<br><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/80.png" alt="80"><br>输出<br><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/81.png" alt="81"><h4 id="3-后处理"><a href="#3-后处理" class="headerlink" title="3.后处理"></a>3.后处理</h4><strong>由中断服务程序完成</strong></li>
+<li>校验送入主存的数据是否正确</li>
+<li>是否继续使用DMA</li>
+<li>检验传送过程是否正确，错则转诊断程序<h3 id="2-DMA接口和系统的连接方式"><a href="#2-DMA接口和系统的连接方式" class="headerlink" title="2.DMA接口和系统的连接方式"></a>2.DMA接口和系统的连接方式</h3></li>
+<li>具有公共请求线的DMA请求</li>
+<li>独立DMA请求<h3 id="3-DAM方式和程序中断方式的比较"><a href="#3-DAM方式和程序中断方式的比较" class="headerlink" title="3.DAM方式和程序中断方式的比较"></a>3.DAM方式和程序中断方式的比较</h3><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/82.png" alt="82"><h2 id="4-DMA接口的类型"><a href="#4-DMA接口的类型" class="headerlink" title="4.DMA接口的类型"></a>4.DMA接口的类型</h2><code>1.选择型
+2.多路型</code><h3 id="1-选择性"><a href="#1-选择性" class="headerlink" title="1.选择性"></a>1.选择性</h3><strong>物理上连接多个设备，逻辑上连接一个设备</strong><br>传送过程中只能又一个设备使用接口。<h3 id="2-多路型"><a href="#2-多路型" class="headerlink" title="2.多路型"></a>2.多路型</h3><strong>物理上连接多个设备，逻辑上连接多个设备</strong><br>传送过程中只有一个设备与传输，但是可以有多个设备同时进行数据准备<h3 id="3-多路型DMA接口的工作原理"><a href="#3-多路型DMA接口的工作原理" class="headerlink" title="3.多路型DMA接口的工作原理"></a>3.多路型DMA接口的工作原理</h3><strong>速度越高优先级越高</strong><br><img src="https://raw.githubusercontent.com/iamsnaping/picture/master/83.png" alt="83"></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/04/3/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1629,164 +1776,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/01/dfs应用1到n约数最多个数/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="无敌 .2.0">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一个不愿透露姓名的网友的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/01/dfs应用1到n约数最多个数/" itemprop="url">dfs应用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-01T14:55:05+08:00">
-                2019-06-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>题目:<a href="https://ac.nowcoder.com/acm/contest/907/B" target="_blank" rel="noopener">牛客网想开了第二题</a><br>首先求一个数约数的个数的公式<br>举个例子<br>12=2<sup>2</sup>x3<sup>1</sup> 那12的约数的个数就是（2+1）*（1+1）个<br>所以这道题的思路就是求他的n以内中最大的数的因数的的指数的乘积的最大值，如果用暴力的话肯定会超时，而一般情况下越大的范围一般就他的约数的个数就越多。<br>根据唯一分解定理，ans=p1<sup>e1</sup>xp2<sup>e2</sup>……pk<sup>ek</sup>,pi为素数且p1&lt;p2&lt;…&lt;pk,<br>那么必有e1&gt;=e2&gt;=…&gt;=ek，(贪心)即后一个素数的幂肯定小于等于前一个素数的幂，这里就用dfs来搜索他的个数。<br>他的数据给的是10<sup>9</sup>所以不用太多的因数，15个足够。<br>code:</p>
-<pre><code>#include&lt;iostream&gt;
-using namespace std;
-
-typedef long long ll;
-
-ll res[15]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47};
-
-ll total=0;
-ll number;
-
-void dfs(ll k,int lim,ll num,ll cnt){
-    if(k&gt;14) return;
-    total=max(total,cnt);
-    int i=1;
-    for(i;i&lt;=lim;i++){
-        if(num&lt;=number/res[k]){
-            num*=res[k];
-            dfs(k+1,i,num,cnt*(i+1));
-        }else break;
-    }
-}
-
-int main(){
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    int t;
-    cin&gt;&gt;t;
-    int i=0;
-    for(i;i&lt;t;i++){
-        cin&gt;&gt;number;
-        total=1;
-        dfs(0,15,1,1);
-        cout&lt;&lt;total&lt;&lt;endl;
-    }
-    return 0;
-}
-</code></pre><p><strong><font style="color:red;"><strong>注意</strong></font></strong>：这里用的是num&lt;=number/res[k] 主要是防止ll爆掉如果用res[k]*num&lt;=number，long long 可能就爆了。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1837,7 +1826,7 @@ int main(){
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
